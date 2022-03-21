@@ -1,0 +1,17 @@
+.screen1{
+    background: var(--primario-claro-color);
+    z-index: 0;
+}
+
+
+
+
+
+
+
+@media only screen and (max-width: 500px){
+
+}
+@media only screen and (min-width: 900px){
+
+}

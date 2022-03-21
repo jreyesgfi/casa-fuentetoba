@@ -1,0 +1,14 @@
+.screen{
+    border: 5px solid rgb(30, 255, 0,.3);
+    width:100vw;
+    position:relative;
+    box-sizing: border-box;
+}
+
+
+@media only screen and (max-width: 500px){
+
+}
+@media only screen and (min-width: 900px){
+
+}
