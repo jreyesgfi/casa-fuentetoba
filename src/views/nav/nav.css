@@ -1,0 +1,25 @@
+.top-nav-bar{
+    width: 100vw;
+    height:20px;
+    background-color: var(--primary-dark-color);
+
+    position:relative;
+
+    
+    top:0;
+
+    z-index: 200;
+}
+
+.bottom-nav-bar{
+    width: 100vw;
+    height:10px;
+    background-color: var(--primary-dark-color);
+
+    position:fixed;
+
+    
+    bottom:0;
+
+    z-index: 200;
+}

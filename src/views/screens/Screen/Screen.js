@@ -3,7 +3,7 @@ import './screen.css';
 
 
 // Global values for the screen
-export const screenHeightFactor = 1.2;
+export const screenHeightFactor = 1;
 
 
 

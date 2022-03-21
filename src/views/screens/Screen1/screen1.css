@@ -1,7 +1,27 @@
 .screen1{
-    background: var(--primario-claro-color);
+    background: var(--primary-light-color);
     z-index: 0;
 }
+
+h2{
+    font-family: MPLUS1,sans-serif;
+    margin-top: 5vh;
+    font-size: 45px;
+}
+
+p{
+    font-family: MPLUS1Normal,sans-serif;
+    font-size: 16px;
+    max-width: 75vw;
+    margin-left: auto;
+    margin-right:auto;
+    left:0;
+    right:0;
+    position:absolute;
+    bottom:0;
+    margin-bottom:20vh;
+}
+
 
 
 

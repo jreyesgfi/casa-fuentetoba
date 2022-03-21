@@ -1,11 +1,19 @@
 :root {
-  --primario-oscuro-color : #1a333d;
-  --primario-claro-color: #FAFFFF;
+  --primary-dark-color : #081624;
+  --primary-light-color: #fcffff;
+  --primary-colorful-color: #23BA51;
+  --second-colorful-color: #CF8755;
+  --second-dark-color: #246661;
 
   --nav-bar-height: 70px;
 
   overflow-x: hidden;
 }
+
+/*fonts*/
+@font-face { font-family: MPLUS1Light; src: url('./fonts/MPLUS1/MPLUS1-Thin.ttf') }
+@font-face { font-family: MPLUS1; src: url('./fonts/MPLUS1/MPLUS1-ExtraLight.ttf') }
+@font-face { font-family: MPLUS1Normal; src: url('./fonts/MPLUS1/MPLUS1-Light.ttf') }
 
 
 html, body, .app {
