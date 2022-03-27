@@ -3,12 +3,27 @@
     z-index: 0;
 }
 
-h2{
-    font-family: MPLUS1,sans-serif;
-    margin-top: 5vh;
-    font-size: 45px;
+.main_title{
+    width:95vw;
+    height:auto;
+    max-width:500px;
+
+    top:0px;
+    margin:auto;
+    margin-top:1vh
 }
 
+/* font-family: MPLUS1,sans-serif;
+    margin-top: 5vh;
+    font-size: 45px;*/
+
+.title_galeria{
+    position:absolute;
+    right:0px;
+    margin:auto;
+    margin-right:7vw;
+    margin-top: 6vh;
+}
 p{
     font-family: MPLUS1Normal,sans-serif;
     font-size: 16px;

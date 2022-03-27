@@ -1,5 +1,8 @@
 import './screen1.css';
+import main_title from '../../../elements/main_title.png'
 import Screen from '../Screen/Screen';
+
+
 
 export default class Screen1 extends Screen {
     constructor(props) {
@@ -9,8 +12,9 @@ export default class Screen1 extends Screen {
         return(
             <div className= "screen1 screen" style = {this.screenStyle}>
                 <div className='contenedor-titulo-pantalla'>
-                    <h2> La Casa de Fuentetoba </h2>
-                    <p> orem Ipsum is simply dummy text of the printing a.</p>
+                    <img src={main_title} alt={"LA CASA DE FUENTETOBA"}
+                     className= "main_title"/>
+                    <h2 className="title_galeria"> GALERIA </h2>
                 </div>
             </div>
         )
