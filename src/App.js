@@ -7,11 +7,30 @@ import BottomNavBar from './views/nav/BottomNavBar';
 
 function App() {
   
+  // A React state to manage the loading
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(
+    ()=>{
+      setTimeout(()=>
+        {
+          setIsLoading(false);
+          console.log('hi')
+        }, 5500)
+    },
+    []
+  )
+  
+  
+  // Create a ref to the state
+  const isLoadingRef = useRef(isLoading);
+  
+
   return (
     <div className="App">
       <TopNavBar>
       </TopNavBar>
-      <ScreenController>
+      <ScreenController isLoading={isLoading}>
       </ScreenController>
       <BottomNavBar>
       </BottomNavBar>
@@ -20,3 +39,4 @@ function App() {
 }
 
 export default App;
+

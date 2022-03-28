@@ -1,0 +1,17 @@
+.spinner-container{
+    height: auto;
+    width: 85vw;
+
+    top: -40vh;
+    bottom: 0px;
+    left: 0px;
+    right:0px;
+    margin: auto;
+    position:absolute;
+
+    z-index: 100;
+
+
+}
+
+

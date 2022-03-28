@@ -86,6 +86,13 @@ h2 {
 .size-small{
   display: none;
 }
+
+
+/* Different css options */
+.hide {
+  display:none;
+}
+
 @media only screen and (max-width: 500px){
   .size-normal{
       display: none;
