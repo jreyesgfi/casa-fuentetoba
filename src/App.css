@@ -1,9 +1,10 @@
 :root {
-  --primary-dark-color : #081624;
+  --primary-dark-color : #012E40;
   --primary-light-color: #fcffff;
-  --primary-colorful-color: #23BA51;
-  --second-colorful-color: #CF8755;
-  --second-dark-color: #246661;
+  --primary-colorful-color: #D65B10;
+  --second-colorful-color: #038C8C;
+  --third-colorful-color: #03A696;
+  --second-dark-color: #025159;
 
   --nav-bar-height: 70px;
 
@@ -56,11 +57,12 @@ html, body, .app {
 }
 
 h2 {
-    font-family: GrotesqueLight, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 30px;
+    font-family: MPLUS1Normal, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 4vh;
     max-width: 75vw;
     margin-bottom:20vh;
-    color: #777777;
+
+    color: var(--primary-colorful-color);
 }
 
 .App-link {

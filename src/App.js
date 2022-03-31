@@ -16,7 +16,7 @@ function App() {
         {
           setIsLoading(false);
           console.log('hi')
-        }, 5500)
+        }, 1000)
     },
     []
   )

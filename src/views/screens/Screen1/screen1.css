@@ -4,26 +4,56 @@
 }
 
 .main_title{
-    width:95vw;
-    height:auto;
-    max-width:500px;
-
-    top:0px;
-    margin:auto;
-    margin-top:1vh
-}
-
-/* font-family: MPLUS1,sans-serif;
-    margin-top: 5vh;
-    font-size: 45px;*/
-
-.title_galeria{
     position:absolute;
     right:0px;
+    left:4vh;
+    top:0px;
+
     margin:auto;
-    margin-right:7vw;
-    margin-top: 6vh;
+    margin-top: 5vh;
+
+    width:65vw;
+    height:auto;
+
+    z-index: 90;
 }
+
+
+.main-image-container{
+    width: 100vw;
+}
+
+.img_fondo_galeria{
+    position:relative;
+    left:0px;
+    right: 0px;
+
+    margin: 2vw;
+
+    width:96vw;
+    height:75vh;
+
+    object-fit: cover;
+    filter: saturate(140%);
+    filter: brightness(110%);
+
+    z-index:20;
+}
+/*to make the shape of the photo*/
+.image-cut{
+    position: absolute;
+    left: 0px;
+    top: 72vh;
+    transform: rotate(6deg);
+
+    width: 150vw;
+    height: 10vh;
+
+    background-color:  var(--primary-light-color);
+
+    z-index: 40;
+}
+
 p{
     font-family: MPLUS1Normal,sans-serif;
     font-size: 16px;

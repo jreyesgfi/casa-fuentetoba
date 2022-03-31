@@ -1,25 +1,11 @@
-.top-nav-bar{
-    width: 100vw;
-    height:20px;
-    background-color: var(--primary-dark-color);
-
-    position:relative;
-
-    
-    top:0;
-
-    z-index: 200;
-}
-
 .bottom-nav-bar{
-    width: 100vw;
-    height:10px;
-    background-color: var(--primary-dark-color);
-
+    bottom:0;
     position:fixed;
 
-    
-    bottom:0;
+    width: 100vw;
+    height:11vh;
 
-    z-index: 200;
+    background-color: var(--primary-dark-color);
+
+    z-index: 100;
 }
