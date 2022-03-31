@@ -1,11 +1,31 @@
 .bottom-nav-bar{
-    bottom:0;
+    bottom:0vh;
     position:fixed;
+    margin:auto 2vw;
 
-    width: 100vw;
-    height:11vh;
-
-    background-color: var(--primary-dark-color);
+    background-color: var(--primary-light-color);
 
     z-index: 100;
+}
+
+.icon-container{
+    width: 96vw;
+    height:11vh;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+
+    /*border: 3px solid black;*/
+}
+
+.icon{
+    max-width:9vw;
+    flex-grow:1;
+
+    display:inline;
+
+    z-index:150;
+
 }

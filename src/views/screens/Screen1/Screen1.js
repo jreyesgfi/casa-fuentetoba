@@ -1,6 +1,6 @@
 import './screen1.css';
-import main_title from '../../../elements/main_title.png'
-import fondoGaleria from '../../../elements/pueblo-vista-general-saturada.png'
+import main_title from '../../../elements/main_title/main_title.svg'
+import fondoGaleria from '../../../thumbnail/main_image/pueblo-vista-general.png'
 import Screen from '../Screen/Screen';
 
 
