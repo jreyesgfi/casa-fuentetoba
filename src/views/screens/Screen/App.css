@@ -1,15 +1,10 @@
 :root {
   --primary-dark-color : #012E40;
-  --second-dark-color: #025159;
-
   --primary-light-color: #fcffff;
-  --second-light-color: #ADB9CA;
-
-
   --primary-colorful-color: #D65B10;
   --second-colorful-color: #038C8C;
   --third-colorful-color: #03A696;
-  
+  --second-dark-color: #025159;
 
   --nav-bar-height: 70px;
 

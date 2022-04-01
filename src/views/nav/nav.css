@@ -1,21 +1,92 @@
+:root {
+    --bottom-nav-height:16vh;
+
+    --evolution-circle-size:min(6vw, 50px);
+  }
+
 .bottom-nav-bar{
     bottom:0vh;
     position:fixed;
-    margin:auto 2vw;
+    
 
     background-color: var(--primary-light-color);
 
     z-index: 100;
 }
 
-.icon-container{
-    width: 96vw;
-    height:11vh;
-
+.container{
     display: flex;
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
+}
+
+
+.evolution-line-container{
+    position:fixed;
+
+    bottom:11vh;
+
+    height: 5vh;
+    width:100vw;
+    
+
+    background-color: var(--primary-light-color);
+}
+
+
+.ends-evolution-line{
+    position:fixed;
+    bottom: 8vh;
+
+    width: 100vw;
+    height: 9vh;
+    box-sizing: border-box;
+
+    border:4vh solid var(--primary-light-color);
+}
+
+.evolution-circle-container {
+    position:fixed;
+    bottom:11vh;
+
+    width: 98vw;
+
+    margin:auto 1vw;
+
+    box-sizing: border-box;
+
+}
+
+
+.evolution-circle {
+
+    width:var(--evolution-circle-size);
+    height:var(--evolution-circle-size);
+
+    background-color: var(--primary-light-color);
+    border:3pt solid var(--second-light-color);
+    border-radius:100%;
+
+    z-index:150;
+}
+
+.evolution-line{
+    position:fixed;
+    bottom:-1vh;
+    left: -1vh;
+
+    width:110vw;
+    height:13vh;
+
+    border: 1.1vw dotted var(--primary-dark-color);
+}
+
+.icon-container{
+    margin:auto 2vw;
+
+    width: 96vw;
+    height:11vh;
 
     /*border: 3px solid black;*/
 }
@@ -23,8 +94,6 @@
 .icon{
     max-width:9vw;
     flex-grow:1;
-
-    display:inline;
 
     z-index:150;
 

@@ -2,31 +2,24 @@ import './nav.css';
 //import SettingButton from './SettinButton';
 import iconDictionary from '../iconsImporter/iconsExporter';
 
-
 function BottomNavBar() {
-
-
-
-
   return (
     <div className="bottom-nav-bar">
-      
       <div className="evolution-line-container">
-        <div className="evolution-line"></div>
-        <div className="ends-evolution-line"></div>
+        <div className="dot-line evolution-line"></div>
+        <div className="evolution-circle-container">
+          <div className="evolution-circle"></div>
+          <div className="evolution-circle"></div>
+          <div className="evolution-circle"></div>
+          <div className="evolution-circle"></div>
+          <div className="evolution-circle"></div>
+          <div className="evolution-circle"></div>
+        </div>
+
       </div>
 
-      <div className="evolution-circle-container container">
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-      </div>
 
-
-      <div className="icon-container container">
+      <div className="icon-container">
         <div className="icon-box">
           <img
             className="house icon"
