@@ -111,6 +111,8 @@
     width: 96vw;
     height:11vh;
 
+    background-color: var(--primary-light-color);
+
     /*border: 3px solid black;*/
 }
 

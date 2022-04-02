@@ -8,6 +8,7 @@ function BottomNavBar(props) {
 
 
   const evolutionCircleArray = [0,1,2,3,4,5];
+  const iconArray = ['house', 'camera','bed', 'map', 'calendar', 'conversation']
     
   const classNameSelector = (i,appScreenNumber) =>{
     if (appScreenNumber <i ){ return 'uncharted'}
@@ -30,7 +31,6 @@ function BottomNavBar(props) {
           `}
           key = {circleNum}
           >
-            <p>{console.log(classNameSelector(circleNum,props.appScreenNumber))}</p>
           </div>
         )
         }
@@ -38,47 +38,17 @@ function BottomNavBar(props) {
 
 
       <div className="icon-container container">
-        <div className="icon-box">
-          <img
-            className="house icon"
-            src={iconDictionary['house'][0]}>
-          </img>
-        </div>
 
-        <div className="icon-box">
-          <img
-            className="camera icon"
-            src={iconDictionary['camera'][0]}>
-          </img>
-        </div>
-
-        <div className="icon-box">
-          <img
-            className="bed icon"
-            src={iconDictionary['bed'][0]}>
-          </img>
-        </div>
-
-        <div className="icon-box">
-          <img
-            className="map icon"
-            src={iconDictionary['map'][0]}>
-          </img>
-        </div>
-
-        <div className="icon-box">
-          <img
-            className="calendar icon"
-            src={iconDictionary['calendar'][0]}>
-          </img>
-        </div>
-
-        <div className="icon-box">
-          <img
-            className="conversation icon"
-            src={iconDictionary['conversation'][0]}>
-          </img>
-        </div>
+        {iconArray.map((iconName,index) => 
+            <img className={`icon 
+            ${iconName}
+            `}
+            key = {index}
+            src = {iconDictionary[iconName][index==props.appScreenNumber?1:0]}
+            >
+            </img>
+          )
+        }
 
       </div>
     </div>

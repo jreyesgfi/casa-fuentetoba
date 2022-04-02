@@ -55,6 +55,22 @@ export default function ScreenController (props) {
                 <Screen1 
                     screenStyle= {screenStyle}
                     focus= {1==appScreenNumber}>
+                </Screen1>
+                <Screen1 
+                    screenStyle= {screenStyle}
+                    focus= {1==appScreenNumber}>
+                </Screen1> 
+                <Screen1 
+                    screenStyle= {screenStyle}
+                    focus= {1==appScreenNumber}>
+                </Screen1> 
+                <Screen1 
+                    screenStyle= {screenStyle}
+                    focus= {1==appScreenNumber}>
+                </Screen1> 
+                <Screen1 
+                    screenStyle= {screenStyle}
+                    focus= {1==appScreenNumber}>
                 </Screen1> 
 
             {   /* BottomNavBar */  }
