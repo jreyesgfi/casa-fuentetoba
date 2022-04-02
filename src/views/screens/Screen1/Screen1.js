@@ -5,13 +5,10 @@ import Screen from '../Screen/Screen';
 
 
 
-export default class Screen1 extends Screen {
-    constructor(props) {
-        super(props);
-    }
-    render(){
+export default function Screen1(props) {
+
         return(
-            <div className= "screen1 screen" style = {this.screenStyle}>
+            <div className= "screen1 screen" style = {props.screenStyle}>
                 <div className="main-image-container">
                     <div className="image-cut"></div>
                     <img src ={fondoGaleria} className ='img_fondo_galeria'></img>
@@ -29,8 +26,4 @@ export default class Screen1 extends Screen {
                 
             </div>
         )
-    }
-
-
-
 }

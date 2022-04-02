@@ -4,6 +4,29 @@
     --evolution-circle-size:min(6vw, 50px);
   }
 
+
+/* multiple type of showing*/
+.focus{
+    border-color:#ffffffff;
+    
+    background-color: var(--primary-colorful-color);
+}
+.not-focus{
+    background-color: var(--primary-dark-color);
+}
+
+.uncharted{
+    border-color:var(--second-light-color);
+    background-color: var(--primary-light-color);
+}
+
+.past{
+    border-color:var(--primary-dark-color);
+    background-color: var(--primary-light-color);
+}
+
+
+
 .bottom-nav-bar{
     bottom:0vh;
     position:fixed;
@@ -64,8 +87,8 @@
     width:var(--evolution-circle-size);
     height:var(--evolution-circle-size);
 
-    background-color: var(--primary-light-color);
-    border:3pt solid var(--second-light-color);
+    border-width:3pt;
+    border-style:solid;
     border-radius:100%;
 
     z-index:150;

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import ScreenController from './views/screens/ScreenController';
 import BottomNavBar from './views/nav/BottomNavBar';
+import offsetEventListener from './operators/OffsetController';
 
 
 function App() {
@@ -9,16 +10,19 @@ function App() {
   // A React state to manage the loading
   const [isLoading, setIsLoading] = useState(true);
   
+  // Await with spinner to load
   useEffect(
     ()=>{
       setTimeout(()=>
         {
           setIsLoading(false);
-          console.log('hi')
-        }, 1000)
+        }, 2000)
     },
     []
   )
+
+
+  
 
 
   
@@ -27,8 +31,6 @@ function App() {
     <div className="App">
       <ScreenController isLoading={isLoading}>
       </ScreenController>
-      <BottomNavBar>
-      </BottomNavBar>
     </div>
   );
 }

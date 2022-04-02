@@ -1,28 +1,39 @@
 import './nav.css';
 //import SettingButton from './SettinButton';
-import iconDictionary from '../iconsImporter/iconsExporter';
+import iconDictionary from '../../operators/iconsImporter/iconsExporter';
+import { useEffect } from 'react';
 
 
-function BottomNavBar() {
+function BottomNavBar(props) {
 
 
-
+  const evolutionCircleArray = [0,1,2,3,4,5];
+    
+  const classNameSelector = (i,appScreenNumber) =>{
+    if (appScreenNumber <i ){ return 'uncharted'}
+    else if (appScreenNumber == i)return 'focus'
+    else return 'past'
+  }
 
   return (
     <div className="bottom-nav-bar">
-      
+
       <div className="evolution-line-container">
         <div className="evolution-line"></div>
         <div className="ends-evolution-line"></div>
       </div>
 
       <div className="evolution-circle-container container">
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
-        <div className="evolution-circle"></div>
+        {evolutionCircleArray.map(circleNum => 
+          <div className={`evolution-circle 
+          ${classNameSelector(circleNum,props.appScreenNumber)}
+          `}
+          key = {circleNum}
+          >
+            <p>{console.log(classNameSelector(circleNum,props.appScreenNumber))}</p>
+          </div>
+        )
+        }
       </div>
 
 

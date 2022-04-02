@@ -1,52 +1,70 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Screen1 from './Screen1/Screen1';
 import LoadingSpinner from "../spinner/Spinner";
+import BottomNavBar from "../nav/BottomNavBar";
+import OffsetEventListener from "../../operators/OffsetController";
 
-export default class ScreenController extends React.Component{
+export default function ScreenController (props) {
     // create a static value for the offset
     //generalOffset = 0;
 
-    constructor(props){
+    // define the screen properties as states
+    const [offset,setOffset] = useState([0]);
+    const [screenSize, setScreenSize] = useState(window.innerHeight)
 
-        super(props)
-
-        // general screen properties
-        this.offset = props.offset || null;        
-        this.screenSize = props.screenSize || null;
-
-        // states of the app
-        this.isLoading = props.isLoading;
-
-        
-        //const screenHeihgt = props.screenSize.current[1] || null;
-
-        // what is the current screen number
-        //this.screenNumber = Math.floor(this.offset/this.screenHeihgt)
-
-        // keep updated the screens dimensions in css
-        
+    // update the offset
+    useEffect( ()=> {
+        OffsetEventListener(()=>{setOffset(window.scrollY)})
+    },[]);
 
 
+    // app Screen Number
+    let appScreenNumber = parseInt((offset+screenSize/2) / screenSize);
+
+
+    //***************************//
+    // GENERAL CONFIG FOR SCREENS
+
+    // Global values for the screen
+    const screenHeightFactor = 1;
+
+
+
+
+
+    // define the dimensions of the general screen
+    const screenStyle = {
+        height:String(100 * screenHeightFactor) + 'vh'
     }
 
-    render(){
-        console.log('the loading is',this.isLoading)
-        return(
-            <div key={this.isLoading} className="hi">
-                { //Build all the screens or load, but both are loading
-                }
-                <div className={this.props.isLoading?'Normal':'hide'}>
-                    <LoadingSpinner/> 
-                </div>
-                <div className={this.props.isLoading?'hide':'Normal'}>
-                    <Screen1>
-                    </Screen1>
-                    <Screen1>
-                    </Screen1>  
-                </div>
-                
 
+    return(
+        
+
+        <div key={props.isLoading} className="hi">
+            { //Build all the screens or load, but both are loading
+            }
+            <div className={props.isLoading?'Normal':'hide'}>
+                <LoadingSpinner/> 
             </div>
-        )
-    }
+            <div className={props.isLoading?'hide':'Normal'}>
+                <Screen1 
+                    screenStyle= {screenStyle}
+                    focus= {0==appScreenNumber}>
+                </Screen1>
+                <Screen1 
+                    screenStyle= {screenStyle}
+                    focus= {1==appScreenNumber}>
+                </Screen1> 
+
+            {   /* BottomNavBar */  }
+                <BottomNavBar
+                    appScreenNumber={appScreenNumber}
+                >
+                </BottomNavBar>
+            </div>
+
+        </div>
+    )
+    
 }
