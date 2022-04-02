@@ -3,6 +3,7 @@ import Screen1 from './Screen1/Screen1';
 import LoadingSpinner from "../spinner/Spinner";
 import BottomNavBar from "../nav/BottomNavBar";
 import OffsetEventListener from "../../operators/OffsetController";
+import ScreenGallery from "./ScreenGallery/ScreenGallery";
 
 export default function ScreenController (props) {
     // create a static value for the offset
@@ -12,21 +13,27 @@ export default function ScreenController (props) {
     const [offset,setOffset] = useState([0]);
     const [screenSize, setScreenSize] = useState(window.innerHeight)
 
+    //***************************//
+    // GENERAL CONFIG FOR SCREENS
+
+    // Global values for the screen
+    const screenHeightFactor = 1;
+    const navHeight = 16; //vh
+
     // update the offset
     useEffect( ()=> {
         OffsetEventListener(()=>{setOffset(window.scrollY)})
     },[]);
 
 
+    // actually showed screen height
+    const screenPercentage = (100 * screenHeightFactor - navHeight)/100;
+    let realScreenSize = screenPercentage * screenSize;
+
     // app Screen Number
-    let appScreenNumber = parseInt((offset+screenSize/2) / screenSize);
+    let appScreenNumber = parseInt((offset+realScreenSize/2) / realScreenSize);
 
-
-    //***************************//
-    // GENERAL CONFIG FOR SCREENS
-
-    // Global values for the screen
-    const screenHeightFactor = 1;
+    
 
 
 
@@ -34,7 +41,8 @@ export default function ScreenController (props) {
 
     // define the dimensions of the general screen
     const screenStyle = {
-        height:String(100 * screenHeightFactor) + 'vh'
+        position:'relative',
+        height:String(screenPercentage*100) + 'vh'
     }
 
 
@@ -52,25 +60,25 @@ export default function ScreenController (props) {
                     screenStyle= {screenStyle}
                     focus= {0==appScreenNumber}>
                 </Screen1>
-                <Screen1 
+                <ScreenGallery
                     screenStyle= {screenStyle}
                     focus= {1==appScreenNumber}>
-                </Screen1>
+                </ScreenGallery>
                 <Screen1 
                     screenStyle= {screenStyle}
-                    focus= {1==appScreenNumber}>
+                    focus= {2==appScreenNumber}>
                 </Screen1> 
                 <Screen1 
                     screenStyle= {screenStyle}
-                    focus= {1==appScreenNumber}>
+                    focus= {3==appScreenNumber}>
                 </Screen1> 
                 <Screen1 
                     screenStyle= {screenStyle}
-                    focus= {1==appScreenNumber}>
+                    focus= {4==appScreenNumber}>
                 </Screen1> 
                 <Screen1 
                     screenStyle= {screenStyle}
-                    focus= {1==appScreenNumber}>
+                    focus= {5==appScreenNumber}>
                 </Screen1> 
 
             {   /* BottomNavBar */  }

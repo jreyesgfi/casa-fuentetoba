@@ -1,0 +1,10 @@
+.screen-gallery div {
+    border:1px solid var(--primary-dark-color)
+}
+
+.screen-gallery {
+    height:calc(100vh - var(--bottom-nav-height));
+    width:100vw;
+    
+    border: 2px dotted var(--primary-dark-color);
+}

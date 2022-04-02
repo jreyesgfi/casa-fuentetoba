@@ -2,6 +2,7 @@
 .screen{
     
     width:100vw;
+    height:calc( 100vh - var(--bottom-nav-height) );
     position:relative;
     box-sizing: border-box;
 }
