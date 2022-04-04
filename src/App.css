@@ -7,11 +7,13 @@
 
 
   --primary-colorful-color: #D65B10;
+  --primary-colorful-color-transparent: rgba(214, 92, 16, 0.616);
   --second-colorful-color: #038C8C;
   --third-colorful-color: #03A696;
   
 
-  --nav-bar-height: 70px;
+  /*--nav-bar-height: 16vh;*/
+  --screen-header: 23vh;
 
   overflow-x: hidden;
 }
@@ -20,6 +22,9 @@
 @font-face { font-family: MPLUS1Light; src: url('./fonts/MPLUS1/MPLUS1-Thin.ttf') }
 @font-face { font-family: MPLUS1; src: url('./fonts/MPLUS1/MPLUS1-ExtraLight.ttf') }
 @font-face { font-family: MPLUS1Normal; src: url('./fonts/MPLUS1/MPLUS1-Light.ttf') }
+@font-face { font-family: MPLUS1Bold; src: url('./fonts/MPLUS1/MPLUS1-Bold.ttf') }
+@font-face { font-family: MPLUS1SemiBold; src: url('./fonts/MPLUS1/MPLUS1-SemiBold.ttf') }
+
 @font-face { font-family: GrotesqueLight; src: url('./fonts/DarkerGrotesque/DarkerGrotesque-Light.ttf') }
 
 
@@ -61,13 +66,55 @@ html, body, .app {
   top:var(--nav-bar-height);
 }
 
-h2 {
-    font-family: MPLUS1Normal, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 4vh;
-    max-width: 75vw;
-    margin-bottom:20vh;
+.header{
+  position:relative;
+  top:0vh;
+  left:0vh;
 
-    color: var(--primary-colorful-color);
+  height:23vh;
+  width:100vw;
+
+  z-index: 90;
+}
+
+.header h2 {
+  position:absolute;
+  bottom: 1.5vh;
+  left:7vw;
+  margin:0px;
+
+  height:fit-content;
+  width:fit-content;
+
+  font-family: MPLUS1Normal, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 3vh;
+  max-width: 75vw;
+  margin:0;
+
+  color: var(--primary-dark-color);
+}
+
+.header-division-line {
+  position:absolute;
+  bottom: -0.2vh;
+  left:-2vw;
+
+  height:0.2vh;
+  width:110vw;
+
+  background-color: var(--primary-dark-color);
+
+
+}
+
+/* general */
+.flex-box{
+  display:flex;
+  justify-content: center;
+}
+
+.flex-item{
+  flex-grow:1;
 }
 
 .App-link {

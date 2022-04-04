@@ -1,6 +1,5 @@
 import './screen1.css';
 import main_title from '../../../elements/main_title/main_title.svg'
-import fondoGaleria from '../../../thumbnail/main_image/pueblo-vista-general.png'
 import Screen from '../Screen/Screen';
 
 
@@ -11,7 +10,7 @@ export default function Screen1(props) {
             <div className= "screen1 screen" style = {props.screenStyle}>
                 <div className="main-image-container">
                     <div className="image-cut"></div>
-                    <img src ={fondoGaleria} className ='img_fondo_galeria'></img>
+                    <img src ='/images/main_image/pueblo-vista-general.png' className ='img_fondo_galeria'></img>
                 </div>
                 
                 <div className='contenedor-titulo-pantalla'>
