@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Screen1 from './Screen1/Screen1';
 import LoadingSpinner from "../spinner/Spinner";
 import BottomNavBar from "../nav/BottomNavBar";
-import OffsetEventListener from "../../operators/OffsetController";
+import {changeWindowOffset, offsetEventListener} from "../../operators/OffsetController";
 import ScreenGallery from "./ScreenGallery/ScreenGallery";
 
 export default function ScreenController (props) {
@@ -22,9 +22,14 @@ export default function ScreenController (props) {
 
     // update the offset
     useEffect( ()=> {
-        OffsetEventListener(()=>{setOffset(window.scrollY)})
+        offsetEventListener(()=>{setOffset(window.scrollY)})
     },[]);
 
+    // change the window offset to move into a certain screen
+    const moveToScreen = function(numScreen,time){
+        // numScreen starts in 0
+        changeWindowOffset(realScreenSize*(numScreen),time);
+    }
 
     // actually showed screen height
     const screenPercentage = (100 * screenHeightFactor - navHeight)/100;
@@ -84,6 +89,7 @@ export default function ScreenController (props) {
             {   /* BottomNavBar */  }
                 <BottomNavBar
                     appScreenNumber={appScreenNumber}
+                    moveToScreen={moveToScreen}
                 >
                 </BottomNavBar>
             </div>

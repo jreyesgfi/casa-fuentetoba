@@ -45,6 +45,7 @@ function BottomNavBar(props) {
             `}
             key = {index}
             src = {iconDictionary[iconName][index==props.appScreenNumber?1:0]}
+            onClick = {()=>{props.moveToScreen(index)}}
             >
             </img>
           )

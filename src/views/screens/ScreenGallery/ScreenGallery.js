@@ -3,6 +3,7 @@ import './screen-gallery.css'
 
 
 import { globalFolder } from '../../../operators/photoImporter/GalleryPhotoImporter';
+import { setOffset } from '../../../operators/OffsetController';
 
 
 export default function ScreenGallery(props) {
@@ -22,6 +23,11 @@ export default function ScreenGallery(props) {
     //react state to keep the id of the current main photo
     const [mainPhotoNum, setMainPhotoNum] = useState(0)
 
+    /* DIFERENT ACTIONS WHEN CLICK */
+
+
+
+
     // generate the buttons to select room
     const selectButtonGenerator= function(name){
         return(
@@ -39,11 +45,10 @@ export default function ScreenGallery(props) {
                 ${name==selectedRoom?
                 'selected':'not-selected'}`}>
               </div>
-              <p className={`${name.length>7?'long-text':''}`}>
-                  {name}
-                  </p>
-                <p>
-                  {name.length>7?'HAB.':''}
+              <p className={`${name==selectedRoom?
+                'white-text':'dark-text'}`
+                /*${name.length>7?'long-text':''}`*/}>
+                  {name.length>7?'HAB.':name}
                 </p>
             </div>
         )
@@ -55,13 +60,34 @@ export default function ScreenGallery(props) {
 
         if (numTotalPhotos === 0){ return}
 
-        const currentPhotoPos = mainPhotoNum%numTotalPhotos;
+        var currentPhotoPos = mainPhotoNum%numTotalPhotos;
+
+        if ( mainPhotoNum < 0){ 
+            currentPhotoPos = (numTotalPhotos-1);
+            setMainPhotoNum(numTotalPhotos-1);
+        }
+        console.log(currentPhotoPos);
+        console.log(globalFolder[selectedRoom])
+
+        
 
         return(
-            <img 
+            <div className="main-photo-row flex-box">
+                <img 
                 src={globalFolder[selectedRoom][currentPhotoPos]['imgUrl']}
                 >
-            </img>
+                </img>
+                <div className="contenedor-icono-cambio-imagen flex-box">
+                    <div className= 'prev-photo-button control-button'
+                        onClick={()=>{setMainPhotoNum(mainPhotoNum-1)}}>
+                        {'<'}
+                    </div>
+                    <div className= 'next-photo-button control-button'
+                        onClick={()=>{setMainPhotoNum(mainPhotoNum+1)}}>
+                        {'>'}
+                    </div>
+                </div>
+            </div>
         )
     }
     
@@ -85,9 +111,9 @@ export default function ScreenGallery(props) {
                     {selectButtonGenerator('TERRAZA')}
                     {selectButtonGenerator('SALÓN')}
                 </div>
-                <div className="main-photo-row flex-box">
-                    {mainPhotoGenerator()}
-                </div>
+
+                {mainPhotoGenerator()}
+                
                 <div className="bottom-photo-row flex-box">
                     {selectButtonGenerator('BAÑOS')}
                     {selectButtonGenerator('HABITACIONES')}
