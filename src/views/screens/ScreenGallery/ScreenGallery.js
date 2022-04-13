@@ -66,8 +66,6 @@ export default function ScreenGallery(props) {
             currentPhotoPos = (numTotalPhotos-1);
             setMainPhotoNum(numTotalPhotos-1);
         }
-        console.log(currentPhotoPos);
-        console.log(globalFolder[selectedRoom])
 
         
 

@@ -1,0 +1,52 @@
+{
+    "television":{
+        "title":"TELEVISIÓN",
+        "text": "PANTALLA PLANA EN SALÓN Y AZOTEA",
+        "url": "/icons/darkTelevision.svg"
+    },
+    "terraza":{
+        "title":"TERRAZA",
+        "text": "BARBACOA DE GAS",
+        "url":"/icons/darkGardenGnomo.svg"
+    },
+    "chimenea":{
+        "title":"CHIMENEA DE LEÑA",
+        "text": "",
+        "url":"/icons/darkBonfire.png"
+    },
+    "capacidad":{
+        "title":"CAPACIDAD",
+        "text": "14 personas",
+        "url": "/icons/darkPeopleGroup.svg"
+    },
+    "camas":{
+        "title":"6 CAMAS DOBLES",
+        "text": "",
+        "url": "/icons/darkBed.svg"
+    },
+    "sofa":{
+        "title":"1 SOFA CAMA",
+        "text": "",
+        "url": "/icons/darkSOFA.svg"
+    },
+    "piscina":{
+        "title":"PISCINA PÚBLICA",
+        "text": "EN LA URBANIZACIÓN",
+        "url": "/icons/darkSwimming.svg"
+    },
+    "bar":{
+        "title":"BAR / CAFETERÍA",
+        "text": "",
+        "url": "/icons/darkBarTable.png"
+    },
+    "polideportivo":{
+        "title":"POLIDEPORTIVO PÚBLICO",
+        "text": "EN LA URBANIZACIÓN",
+        "url": "/icons/darkTenisBall.png"
+    },
+    "montaña":{
+        "title":"PAISAJE DE MONTAÑA",
+        "text": "IDEAL PARA SENDERISMO O CICLISMO",
+        "url": "/icons/darkMountains.svg"
+    }
+}

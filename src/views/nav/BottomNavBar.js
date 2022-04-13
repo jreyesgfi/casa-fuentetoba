@@ -30,6 +30,7 @@ function BottomNavBar(props) {
           ${classNameSelector(circleNum,props.appScreenNumber)}
           `}
           key = {circleNum}
+          onClick = {()=>{props.moveToScreen(circleNum)}}
           >
           </div>
         )

@@ -4,6 +4,8 @@ import LoadingSpinner from "../spinner/Spinner";
 import BottomNavBar from "../nav/BottomNavBar";
 import {changeWindowOffset, offsetEventListener} from "../../operators/OffsetController";
 import ScreenGallery from "./ScreenGallery/ScreenGallery";
+import ScreenCharacteristics from "./ScreenCharacteristics/ScreenCharacteristics";
+import ScreenCalendar from "./ScreenCalendar/ScreenCalendar";
 
 export default function ScreenController (props) {
     // create a static value for the offset
@@ -69,18 +71,18 @@ export default function ScreenController (props) {
                     screenStyle= {screenStyle}
                     focus= {1==appScreenNumber}>
                 </ScreenGallery>
-                <Screen1 
+                <ScreenCharacteristics 
                     screenStyle= {screenStyle}
                     focus= {2==appScreenNumber}>
-                </Screen1> 
+                </ScreenCharacteristics> 
                 <Screen1 
                     screenStyle= {screenStyle}
                     focus= {3==appScreenNumber}>
                 </Screen1> 
-                <Screen1 
+                <ScreenCalendar 
                     screenStyle= {screenStyle}
                     focus= {4==appScreenNumber}>
-                </Screen1> 
+                </ScreenCalendar> 
                 <Screen1 
                     screenStyle= {screenStyle}
                     focus= {5==appScreenNumber}>

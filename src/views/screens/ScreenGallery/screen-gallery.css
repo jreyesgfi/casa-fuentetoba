@@ -108,6 +108,8 @@
 /*main image*/
 .main-photo-row img{
     object-fit: cover;
+    filter: saturate(140%);
+    filter: brightness(130%);
 }
 
 .contenedor-icono-cambio-imagen{

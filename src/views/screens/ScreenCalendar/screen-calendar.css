@@ -1,0 +1,67 @@
+.calendar-header{
+    height:17vh;
+
+    margin-bottom:8vh;
+}
+
+.calendar-container{
+    position:relative;
+
+    height: 0;
+    left:0;
+
+    margin:5vw;
+    margin-top:2vh;
+    margin-bottom:5vh;
+    
+    
+    width:92vw;
+    height:35vh;
+    box-sizing: border-box;
+
+    display:flex;
+    flex-wrap: wrap;
+
+    justify-content:first baseline;
+    
+
+    border:2px solid red;
+}
+
+.day-container{
+    position:relative;
+
+    box-sizing: border-box;
+
+    height: 20%;
+    flex: 1 0 13%;
+
+    border:2px solid var(--primary-dark-color)
+}
+
+.day-header{
+    height: 35%;
+}
+.day-body{
+    height: 65%;
+
+    font-family: MPLUS1Bold;
+    font-size: large;
+}
+
+/* Change the color of the cell depending on the day*/
+.calendar-container .today{
+    border:3pt solid var(--primary-colorful-color);
+}
+
+.calendar-container .not-visible{
+    background-color: var(--primary-light-color);
+
+    color: var(--primary-light-color);
+
+    border-color: var(--primary-light-color);;
+}
+
+.calendar-container .incoming{
+    color: var(--second-light-color);
+}

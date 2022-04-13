@@ -101,7 +101,7 @@ html, body, .app {
   bottom: -0.2vh;
   left:-2vw;
 
-  height:0.2vh;
+  height:0.4vh;
   width:110vw;
 
   background-color: var(--primary-dark-color);
