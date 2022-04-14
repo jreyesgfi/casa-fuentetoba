@@ -37,6 +37,7 @@
     flex: 1 0 13%;
 
     border:2px solid var(--primary-dark-color)
+
 }
 
 .day-header{
@@ -54,14 +55,28 @@
     border:3pt solid var(--primary-colorful-color);
 }
 
-.calendar-container .not-visible{
-    background-color: var(--primary-light-color);
+.calendar-container .ocupado{
+    background-color: var(--primary-dark-color);
 
     color: var(--primary-light-color);
-
-    border-color: var(--primary-light-color);;
 }
 
+
+
+.calendar-container .ocupado .day-body{
+    color:var(--primary-dark-color);
+}
+
+
+
 .calendar-container .incoming{
-    color: var(--second-light-color);
+    visibility: hidden;
+}
+
+.calendar-container .not-visible{
+    visibility: hidden;
+}
+
+.señalado{
+    background-color: var(--primary-colorful-color);
 }

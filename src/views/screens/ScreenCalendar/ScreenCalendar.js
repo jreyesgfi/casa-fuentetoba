@@ -127,7 +127,7 @@ export default function ScreenCalendar(props) {
             const oneDay = new Date(dateSelected);
             oneDay.setDate(oneDay.getDate() + i);
 
-            var situation = 'free';
+            var situation = 'current';
 
             if (i < priorDays) {
                 situation = 'not-visible';
@@ -143,17 +143,17 @@ export default function ScreenCalendar(props) {
                     'precio':0,
                     'ocupado':1,
                  }
-            console.log(daysData[dateToString(oneDay)], previousSchema)
 
             var dayObject = {
                 'dia' : oneDay.getDate(),
-                'mes' : oneDay.getMonth(),
+                'mes' : oneDay.getMonth()+1,
                 'año' : oneDay.getFullYear(),
                 'indice' : i,
-                'key' : oneDay.toDateString(),
+                'key' : dateToString(oneDay),
                 'ocupado': previousSchema['ocupado'],
                 'precio': previousSchema['precio'],
                 'situacion': situation,
+                'señalado': false,
             }
             
             // fields: dia, precio, ocupado, 
@@ -165,17 +165,37 @@ export default function ScreenCalendar(props) {
 
     },[daysData]);
 
+    /**********************************
+     * onClick Behavior
+     */
+     function onClick(target,callback=null){
+        
+        target['señalado'] = !target['señalado'];
+        setSelectedDays([...selectedDays]); // change the array to detect re-rendering
+    }
 
 
-    const calendarGenerator = (daysSelectedLocal)=>{
-       
+
+    /**********************************
+     * generate the ui of the calendar
+     */
+    function CalendarGenerator(props){
+        const daysSelectedLocal = props['days-selected'];
+        if (!daysSelectedLocal){
+            return null
+        }
+        console.log('re-rendering')
         const days = daysSelectedLocal.map((day) => {
                 return (
                     <div
-                        className={`day-container 
-                        ${day['ocupado']?'ocupado':''}
+                        className={
+                            `day-container 
+                        ${day['ocupado']==1?' ocupado':''}
+                        ${day['señalado']==true?' señalado ':''}
                         ${day['situacion']}`
                         }
+
+                        onClick={()=>{onClick(day)}}
                         key={day['key']}>
 
                         <div className='day-header'>
@@ -197,6 +217,16 @@ export default function ScreenCalendar(props) {
             </div>
         )
     };
+
+    /**************
+     * dayCells
+     */
+    
+
+
+
+
+
     return (
         <div className="characteristics-screen screen" style={props.screenStyle}>
             {/* File Uploader 
@@ -212,9 +242,9 @@ export default function ScreenCalendar(props) {
                 <h2 className="header-title"> DISPONIBILIDAD</h2>
                 <div className="header-division-line"></div>
             </div>
-            <div>
-                {calendarGenerator(selectedDays)}
-            </div>
+            <CalendarGenerator days-selected={selectedDays}>
+            </CalendarGenerator>
+            
         </div>
     )
 }
