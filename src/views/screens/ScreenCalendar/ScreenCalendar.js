@@ -67,8 +67,8 @@ export default function ScreenCalendar(props) {
     async function changeDaysToDict(df) {
         const finalDf = new Promise((resolve) => {
             const dfToReturn = {};
-            df.forEach((row) => { 
-                dfToReturn[row['dia'].toString()] = row 
+            df.forEach((row) => {
+                dfToReturn[row['dia'].toString()] = row
             })
             return resolve(dfToReturn)
         });
@@ -94,134 +94,247 @@ export default function ScreenCalendar(props) {
                 daysPromise.then(daysInObject => {
                     setDaysData(daysInObject)
                 })
-                
+
                 setLoadingDays(false);
             }
         })
     }
 
     // a call to the function at the beggining
-    useEffect(()=>uploadDays(),[])
+    useEffect(() => uploadDays(), [])
 
     // Init of plot
     const [selectedDays, setSelectedDays] = useState([]);
-    const [dayCells, setDayCells] = useState([])
 
     useEffect(
-     () => {
-        var days = [];
+        () => {
+            var days = {};
 
 
-        // define the first empty holders
-        const firstDay = new Date(dateSelected);
-        firstDay.setDate(firstDay.getDate() + priorDays);
-        const initialDays = -((firstDay.getDay() + 6) % 7)
+            // define the first empty holders
+            const firstDay = new Date(dateSelected);
+            firstDay.setDate(firstDay.getDate() + priorDays);
+            const initialDays = -((firstDay.getDay() + 6) % 7)
 
-        // define the last ones
-        const lastDay = new Date(dateSelected);
-        lastDay.setDate(firstDay.getDate() + daysOfEachMonth[dateSelected.getMonth() + 1]);
-        const finalDays = 7 - ((lastDay.getDay() + 6) % 7) + 7;
+            // define the last ones
+            const lastDay = new Date(dateSelected);
+            lastDay.setDate(firstDay.getDate() + daysOfEachMonth[dateSelected.getMonth() + 1]);
+            const finalDays = 7 - ((lastDay.getDay() + 6) % 7) + 7;
 
-        // fill the days
-        for (var i = initialDays + priorDays; i < rangeOfPlot + finalDays; i++) {
-            const oneDay = new Date(dateSelected);
-            oneDay.setDate(oneDay.getDate() + i);
+            // fill the days
+            for (var i = initialDays + priorDays; i < rangeOfPlot + finalDays; i++) {
+                const oneDay = new Date(dateSelected);
+                oneDay.setDate(oneDay.getDate() + i);
 
-            var situation = 'current';
+                var situation = 'current';
 
-            if (i < priorDays) {
-                situation = 'not-visible';
+                if (i < priorDays) {
+                    situation = 'not-visible';
+                }
+                else if (i == 0) {
+                    situation = 'today';
+                }
+                else if (i >= rangeOfPlot) {
+                    situation = 'incoming';
+                }
+                const previousSchema = daysData[dateToString(oneDay)] ??
+                {
+                    'precio': 0,
+                    'ocupado': 1,
+                }
+
+                var dayObject = {
+                    'dia': oneDay.getDate(),
+                    'mes': oneDay.getMonth() + 1,
+                    'año': oneDay.getFullYear(),
+                    'fecha': oneDay,
+                    'indice': i,
+                    'key': dateToString(oneDay),
+                    'ocupado': previousSchema['ocupado'],
+                    'precio': previousSchema['precio'],
+                    'situacion': situation,
+                    'señalado': false,
+                }
+
+                // fields: dia, precio, ocupado, 
+                // day,month, year, index, key
+
+                days[dateToString(oneDay)] = dayObject;
             }
-            else if (i == 0) {
-                situation = 'today';
-            }
-            else if (i >= rangeOfPlot) {
-                situation = 'incoming';
-            }
-            const previousSchema = daysData[dateToString(oneDay)]??
-                 {
-                    'precio':0,
-                    'ocupado':1,
-                 }
+            setSelectedDays(days);
 
-            var dayObject = {
-                'dia' : oneDay.getDate(),
-                'mes' : oneDay.getMonth()+1,
-                'año' : oneDay.getFullYear(),
-                'indice' : i,
-                'key' : dateToString(oneDay),
-                'ocupado': previousSchema['ocupado'],
-                'precio': previousSchema['precio'],
-                'situacion': situation,
-                'señalado': false,
-            }
-            
-            // fields: dia, precio, ocupado, 
-            // day,month, year, index, key
-            
-            days.push(dayObject);
-        }
-        setSelectedDays(days);
+        }, [daysData]);
 
-    },[daysData]);
 
     /**********************************
      * onClick Behavior
      */
-     function onClick(target,callback=null){
+
+    // state to manage if had clicked a first date
+    const [firstClicked, setFirstClicked] = useState(null);
+
+    // range selected
+    const [rangeSelected, setRangeSelected] = useState([]);
+
+    // function  triggered when a range of day is set
+    function setRange(firstDate, secondDate) {
+
+        // recover the actual object date type
+        firstDate = firstDate['fecha'];
+        secondDate = secondDate['fecha'];
+
+        // invert if secondDate is oldest
+        if (firstDate > secondDate) {
+            const copy = firstDate;
+            firstDate = secondDate;
+            secondDate = copy;
+        }
+
+        // keep the track of the setOfDays
+        var totalRange = [];
+        var totalPrice = 0;
+
+        // manage each iteration and break the loop params
+        var currentDay = firstDate;
+        var iterNum = 0;
+
+        while (currentDay != secondDate) {
+            // security break
+            if (iterNum > 30) {
+                break;
+            }
+
+            // add the current day to the list of rangeSelected
+            totalRange.push(currentDay);
+
+            // look in data for this day
+            const currentDayData = daysData[dateToString(currentDay)];
+
+            // check if is occupied
+            if (currentDayData['ocupado']) {
+                return [];
+            }
+
+            // select the day
+
+            // add to the total the price
+            totalPrice += currentDayData['price'];
+        }
+    }
+
+
+    // function triggered by click
+    function onClick(target, callback = null) {
         
-        target['señalado'] = !target['señalado'];
-        setSelectedDays([...selectedDays]); // change the array to detect re-rendering
+        
+        const targetKey=target[0];
+        const targetValue = target[1];
+
+        console.log(targetValue);
+        console.log(targetKey);
+
+        // check if the date is available
+        if (targetValue['ocupado'] == true) {
+            return null;
+        }
+
+        // if range has been fixed, unselect it
+
+        // change the focus state
+        targetValue['señalado'] = !targetValue['señalado'];
+
+        // detect if is an unselect click
+        if (targetValue['señalado'] == true) {
+
+            // check if some firstClick exists
+            if (firstClicked) {
+
+                // cretate the range of days
+                setRange(firstClicked, targetKey);
+
+                // empty the firstClicked
+                setFirstClicked(null);
+            }
+            else {
+                setRangeSelected([]);
+                setFirstClicked(targetKey);
+            }
+
+            //
+
+        }
+
+        // refresh the rendering by redefine the days
+        var copy = {};
+        for (var key in selectedDays){
+            copy[key]=selectedDays[key];
+        }
+
+        // save the changes
+        copy[targetKey] = targetValue;
+
+        console.log(copy);
+        console.log(copy[targetKey]);
+        
+
+        // commit to refresh
+        setSelectedDays(copy);
+        //setSelectedDays([...selectedDays]); // change the array to detect re-rendering
+
     }
 
 
 
-    /**********************************
-     * generate the ui of the calendar
-     */
-    function CalendarGenerator(props){
-        const daysSelectedLocal = props['days-selected'];
-        if (!daysSelectedLocal){
-            return null
-        }
-        console.log('re-rendering')
-        const days = daysSelectedLocal.map((day) => {
-                return (
-                    <div
-                        className={
-                            `day-container 
-                        ${day['ocupado']==1?' ocupado':''}
-                        ${day['señalado']==true?' señalado ':''}
-                        ${day['situacion']}`
-                        }
 
-                        onClick={()=>{onClick(day)}}
-                        key={day['key']}>
 
-                        <div className='day-header'>
-                            {day['dia']}
-                        </div>
-                        <div className={`day-body`}>
-                            {day['precio']}€
-                        </div>
-
-                    </div>
-                )
-            }
-            )
-        
-        
-        return (
-            <div className='calendar-container'>
-                {days}
-            </div>
-        )
-    };
 
     /**************
      * dayCells
      */
-    
+    function CalendarGenerator(props) {
+        const daysSelectedLocal = props['days-selected'];
+        if (!daysSelectedLocal) {
+            return null
+        }
+        console.log('re-rendering')
+        const dayCells = [];
+        
+        // create the dayCells and save in an array
+        for (const [key,day] of Object.entries(selectedDays)){ // very important const to not re-write he array
+            console.log([key,day])
+            dayCells.push(
+            <div
+                    className={
+                        `day-container 
+                        ${day['ocupado'] == 1 ? ' ocupado' : ''}
+                        ${day['señalado'] == true ? ' señalado ' : ''}
+                        ${day['situacion']}`
+                    }
+
+                    onClick={() => { onClick([key,day]) }}
+                    key={key}>
+
+                    <div className='day-header'>
+                        {day['dia']}
+                    </div>
+                    <div className={`day-body`}>
+                        {day['precio']}€
+                    </div>
+
+            </div>
+            );
+        }
+
+
+
+
+        return (
+            <div className='calendar-container'>
+                {dayCells}
+            </div>
+        )
+    };
+
 
 
 
@@ -244,7 +357,7 @@ export default function ScreenCalendar(props) {
             </div>
             <CalendarGenerator days-selected={selectedDays}>
             </CalendarGenerator>
-            
+
         </div>
     )
 }
