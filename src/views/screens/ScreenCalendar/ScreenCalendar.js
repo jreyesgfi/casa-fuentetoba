@@ -1,10 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./screen-calendar.css";
 import Papa from "papaparse";
-import { upload } from "@testing-library/user-event/dist/upload";
 import daysCalendar from "../../../elements/daysExample/ejemploDays.csv";
 import { dateToString } from "../../../elements/parser/dateParser";
-
+import Alert from '@material-ui/lab/Alert';
 
 // for read csv npm install xlsx
 
@@ -166,6 +165,14 @@ export default function ScreenCalendar(props) {
         },
     [daysData]);
 
+
+
+
+
+    /*********
+     * Functions to modify the data in selected days
+     */
+
     // a funtion to force re-process the selected days
     function uploadSelectedDays(changes){
         // refresh the rendering by redefine the days
@@ -195,6 +202,18 @@ export default function ScreenCalendar(props) {
     }
 
 
+    /**
+     * Alert config
+     */
+    const [alert,setAlert]=useState({
+        'display':false,
+        'severity':'success, info, warning or error',
+        'message':'',
+    });
+
+
+
+
     /**********************************
      * onClick Behavior
      */
@@ -203,12 +222,24 @@ export default function ScreenCalendar(props) {
     const [firstClicked, setFirstClicked] = useState(null);
 
     // range selected
-    const [rangeSelected, setRangeSelected] = useState({});
+    const [rangeSelected, setRangeSelected] = useState({
+        'price':0,
+        'days':[],
+    });
 
     // click on occupied date
     function occupiedDate(day){
         console.log(`El día ${day['key']} está ocupado, selecciona una fecha disponible.`);
+        // the alert
+        setAlert({
+            'display':true,
+            'severity':'warning',
+            'message':`El día ${day['key']} está ocupado, selecciona una fecha disponible.`,
+        });
+        
+        // reset clicked values
         setFirstClicked(null);
+        setRangeSelected({})
         unselectAllCells();
         return null;
     }
@@ -238,7 +269,8 @@ export default function ScreenCalendar(props) {
         var currentDay = new Date(firstDate);
         var iterNum = 0;
 
-        while (secondDate > currentDay) {
+        while (secondDate >= currentDay) {
+            console.log(totalPrice)
             // security break
             if (iterNum > 30) {
                 break;
@@ -254,14 +286,14 @@ export default function ScreenCalendar(props) {
             if (currentDayData['ocupado']==true) {
                 totalRange = [];
                 occupiedDate(currentDayData);
-                break;
+                return;
             }
 
             // select the day
             currentDayData['señalado']=true;
 
             // add to the total the price
-            totalPrice += currentDayData['price'];
+            totalPrice += parseInt(currentDayData['precio'],10);
 
             // pass to the next day
             currentDay.setDate(currentDay.getDate() + 1);
@@ -327,8 +359,6 @@ export default function ScreenCalendar(props) {
 
 
 
-
-
     /**************
      * dayCells
      */
@@ -380,7 +410,7 @@ export default function ScreenCalendar(props) {
 
 
     return (
-        <div className="characteristics-screen screen" style={props.screenStyle}>
+        <div className="calendar-screen screen" style={props.screenStyle}>
             {/* File Uploader 
             <input
                 type = "file"
@@ -394,8 +424,25 @@ export default function ScreenCalendar(props) {
                 <h2 className="header-title"> DISPONIBILIDAD</h2>
                 <div className="header-division-line"></div>
             </div>
+            <div className="date-selector">
+
+            </div>
             <CalendarGenerator days-selected={selectedDays}>
             </CalendarGenerator>
+
+            <div className="total-price">
+                {rangeSelected['price']}€
+            </div>
+
+            {alert['display'] == true &&
+            <Alert 
+                className='alert'
+                severity={`${alert['severity']}`}
+                onClose={()=>{setAlert({})}}>
+                    {alert['message']}
+            </Alert>
+            }
+            
 
         </div>
     )

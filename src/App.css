@@ -105,8 +105,16 @@ html, body, .app {
   width:110vw;
 
   background-color: var(--primary-dark-color);
+}
 
 
+/*alerts*/
+
+.alert{
+  position:absolute;
+  bottom:5vh;
+
+  z-index:300;
 }
 
 /* general */
