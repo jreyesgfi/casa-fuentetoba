@@ -13,7 +13,32 @@ export default function ScreenController (props) {
 
     // define the screen properties as states
     const [offset,setOffset] = useState([0]);
-    const [screenSize, setScreenSize] = useState(window.innerHeight)
+
+    const screenUpToDevice = () => {
+        const ua = navigator.userAgent;
+        const ratio = window.devicePixelRatio || 1;
+        var height = 0;
+        //tablet
+        if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+            height = window.innerHeight;
+        }
+        //mobile
+        else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+            height = window.screen.height;
+        }
+        //desktop
+        else{
+            height = window.innerHeight;
+        }
+        return window.innerHeight;
+        
+    };
+    const [screenSize, setScreenSize] = useState(screenUpToDevice())
+    
+    useEffect(
+        ()=>{setScreenSize(screenUpToDevice())},
+        [screenUpToDevice()]
+    )
 
     //***************************//
     // GENERAL CONFIG FOR SCREENS
@@ -30,15 +55,17 @@ export default function ScreenController (props) {
     // change the window offset to move into a certain screen
     const moveToScreen = function(numScreen,time){
         // numScreen starts in 0
-        changeWindowOffset(realScreenSize*(numScreen),time);
+        changeWindowOffset(utilScreenSize*(numScreen),time);
+
+        console.log(screenPercentage, screenSize, utilScreenSize, offset)
     }
 
     // actually showed screen height
     const screenPercentage = (100 * screenHeightFactor - navHeight)/100;
-    let realScreenSize = screenPercentage * screenSize;
+    let utilScreenSize = screenPercentage * screenSize;
 
     // app Screen Number
-    let appScreenNumber = parseInt((offset+realScreenSize/2) / realScreenSize);
+    let appScreenNumber = parseInt((offset+utilScreenSize/2) / utilScreenSize);
 
     
 
@@ -61,6 +88,18 @@ export default function ScreenController (props) {
             }
             <div className={props.isLoading?'Normal':'hide'}>
                 <LoadingSpinner/> 
+            </div>
+            <div className= 'empty-bar' style={{
+                width:'100vw',
+                height:String(100-screenPercentage*100) + 'vh',
+                position:'fixed',
+                height:0,
+               }}>
+                {screenUpToDevice()}
+                <br></br>
+                {offset}
+                <br></br>
+                {utilScreenSize}
             </div>
             <div className={props.isLoading?'hide':'Normal'}>
                 <Screen1 
@@ -87,7 +126,8 @@ export default function ScreenController (props) {
                     screenStyle= {screenStyle}
                     focus= {5==appScreenNumber}>
                 </Screen1> 
-
+                <div className= 'empty-bar' style={{width:'100vw',height:String(100-screenPercentage*100) + 'vh'}}>
+                </div>
             {   /* BottomNavBar */  }
                 <BottomNavBar
                     appScreenNumber={appScreenNumber}

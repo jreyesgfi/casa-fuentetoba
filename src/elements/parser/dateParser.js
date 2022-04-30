@@ -1,5 +1,5 @@
 
-function fillWithZero(numberInString,digits=2){
+export function fillWithZero(numberInString,digits=2){
     if (numberInString.length <digits){
         numberInString = '0'+numberInString;
         fillWithZero(numberInString,digits);

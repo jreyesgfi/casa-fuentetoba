@@ -1,8 +1,13 @@
+.empty-bar{
+  z-index:10000;
+}  
+
 :root {
   --primary-dark-color : #012E40;
   --second-dark-color: #025159;
 
   --primary-light-color: #fcffff;
+  --primary-light-color-trasparent:#fcfffff5;
   --second-light-color: #ADB9CA;
 
 
@@ -112,12 +117,27 @@ html, body, .app {
 
 .alert{
   position:absolute;
-  bottom:5vh;
+  top:0vh;
+  left:0;
+  right:0;
+  margin:auto;
+  
+  width:92vw;
+  height:8vh;
 
-  z-index:300;
+
+  z-index:100;
 }
 
 /* general */
+body{
+  font-family: MPLUS1Normal;
+  font-size:medium;
+
+  color:var(--primary-dark-color);
+}
+
+
 .flex-box{
   display:flex;
   justify-content: center;
@@ -125,6 +145,11 @@ html, body, .app {
 
 .flex-item{
   flex-grow:1;
+}
+
+
+.hidden{
+  visibility:hidden;
 }
 
 .App-link {

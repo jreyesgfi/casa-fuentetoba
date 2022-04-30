@@ -1,0 +1,53 @@
+.month-selector-container{
+    position:relative;
+    margin:auto;
+
+    width:95vw;
+
+    z-index:300;
+}
+
+
+.month-selector{
+    position:absolute;
+    top:0;
+
+    width:100%;
+}
+
+
+
+
+.date-text{
+    position:relative;
+    left:0;
+    height:0;
+    margin:auto;
+
+    width: 50vw;
+    height: fit-content;
+    padding:1vh;
+
+    font-family: MPLUS1SemiBold;
+    font-size: large;
+    color:var(--primary-dark-color);
+
+    border:1pt solid var(--primary-dark-color);
+}
+
+.date-selector-box{
+    position:relative;
+    left:0;
+    top:2vh;
+    margin:auto;
+
+    width: 50vw;
+    height: fit-content;
+    padding:1vh;
+
+    font-family: MPLUS1SemiBold;
+    font-size: large;
+    color:var(--primary-dark-color);
+
+    border:1pt solid var(--primary-dark-color);
+}

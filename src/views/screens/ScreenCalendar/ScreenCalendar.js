@@ -4,6 +4,7 @@ import Papa from "papaparse";
 import daysCalendar from "../../../elements/daysExample/ejemploDays.csv";
 import { dateToString } from "../../../elements/parser/dateParser";
 import Alert from '@material-ui/lab/Alert';
+import MonthSelector from "./MonthSelector/MonthSelector";
 
 // for read csv npm install xlsx
 
@@ -24,6 +25,22 @@ export default function ScreenCalendar(props) {
         6: "Sábado",
         0: "Domingo",
     }
+
+    // Months
+    const monthsDict = {
+        1: "Enero",
+        2: "Febrero",
+        3: "Marzo",
+        4: "Abril",
+        5: "Mayo",
+        6: "Junio",
+        7: "Julio",
+        8: "Agosto",
+        9: "Septiembre",
+        10: "Octubre",
+        11: "Noviembre",
+        12: "Diciembre",
+    };
 
     // Number of days each month
     const daysOfEachMonth = {
@@ -48,7 +65,7 @@ export default function ScreenCalendar(props) {
     }
 
     // Date selected
-    var dateSelected = today;
+    const [dateSelected, setDateSelected] = useState(today);
     var priorDays = -(dateSelected.getDate()) + 1;
     //-( (today.getDay() + 6) % 7)
     var rangeOfPlot = daysOfEachMonth[dateSelected.getMonth() + 1] + priorDays;
@@ -138,8 +155,8 @@ export default function ScreenCalendar(props) {
                 }
                 const previousSchema = daysData[dateToString(oneDay)] ??
                 {
-                    'precio': 0,
-                    'ocupado': 1,
+                    'precio': 150,
+                    'ocupado': 0,
                 }
 
                 var dayObject = {
@@ -163,7 +180,7 @@ export default function ScreenCalendar(props) {
             setSelectedDays(days);
 
         },
-    [daysData]);
+    [daysData,dateSelected]);
 
 
 
@@ -206,9 +223,9 @@ export default function ScreenCalendar(props) {
      * Alert config
      */
     const [alert,setAlert]=useState({
-        'display':false,
-        'severity':'success, info, warning or error',
-        'message':'',
+        'display':true,
+        'severity':'info',//'success, info, warning or error',
+        'message':'Seleccione una fecha de llegada.',
     });
 
 
@@ -305,25 +322,39 @@ export default function ScreenCalendar(props) {
             'days':totalRange,
         });
 
-        //update the information about the selected days
+        // update the information about the selected days
         uploadSelectedDays(totalRange);
+
+        // alert of success
+        setAlert({
+            'display':true,
+            'severity':'success',
+            'message':`Periodo del ${dateToString(firstDate)} al ${dateToString(secondDate)} seleccionado
+            correctamente.`,
+        });
     }
 
 
     // function triggered by click
     function onClick(target, callback = null) {
-        
+
+        // prevent missclicks
+        // if (selectingDay==true){
+        //     return
+        // }
         
         const targetKey=target['key'];
         const targetValue = target;
 
         // check if the date is available
         if (targetValue['ocupado'] == true) {
+            occupiedDate(targetValue);
             return null;
         }
 
-        // reset the selected range if exists
+        // reset the selected range if exists and delete any alert
         unselectAllCells();
+        setAlert({});
 
         // change the focus state
         targetValue['señalado'] = !targetValue['señalado'];
@@ -345,6 +376,13 @@ export default function ScreenCalendar(props) {
             }
             else {
                 setFirstClicked(targetValue);
+                setAlert({
+                    'display':true,
+                    'severity':'info',
+                    'message':`Fecha ${targetKey} seleccionada como llegada, indique la fecha de salida.`,
+                });
+                setRangeSelected({'price':targetValue['precio']});
+                console.log(rangeSelected)
             }
 
             //
@@ -404,13 +442,17 @@ export default function ScreenCalendar(props) {
         )
     };
 
-
+    const [selectingDay, setSelectingDay] = useState(false);
 
 
 
 
     return (
-        <div className="calendar-screen screen" style={props.screenStyle}>
+        <div 
+            className="calendar-screen screen"
+            style={props.screenStyle}
+        >
+
             {/* File Uploader 
             <input
                 type = "file"
@@ -424,14 +466,36 @@ export default function ScreenCalendar(props) {
                 <h2 className="header-title"> DISPONIBILIDAD</h2>
                 <div className="header-division-line"></div>
             </div>
-            <div className="date-selector">
+            
+            <MonthSelector
+                onClick={()=>{setSelectingDay(!selectingDay)}}
+                currentMonth={[dateSelected.getMonth()+1]}
+                currentYear= {dateSelected.getFullYear()}
+                selectingDay={selectingDay}
+                setSelection={(month)=>
+                    {
+                        setDateSelected(month);
+                    }
+                }
+                className={"month-selector-container"}>
+            </MonthSelector>
 
+            {/*week day*/}
+            <div className='week-day-header'>
+            {[...Array(7).keys()].map((n)=>
+                (<div className='week-day-cell'>
+                    {daysOfWeekDict[(n+1)%7].slice(0,3)}
+                </div>
+                )
+            )}
             </div>
+
             <CalendarGenerator days-selected={selectedDays}>
             </CalendarGenerator>
 
             <div className="total-price">
-                {rangeSelected['price']}€
+                Total:
+                {rangeSelected['price']|0} €
             </div>
 
             {alert['display'] == true &&
