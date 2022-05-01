@@ -4,6 +4,9 @@
     --evolution-circle-size:min(6vw, 50px);
   }
 
+.bottom-nav-bar{
+    z-index: 300;
+}
 
 /* multiple type of showing*/
 .focus{

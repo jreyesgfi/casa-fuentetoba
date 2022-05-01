@@ -111,24 +111,39 @@
 
 
 /* price box*/
-
-.total-price{
+.total-price-container{
     position:relative;
-    left:0;
-    top:10vh;
-    margin:auto;
+    left:5vw;
+    top:13vh;
 
-    width: 30vw;
-    height: fit-content;
-    padding:0.5vh;
+    width:100%;
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
 
     font-family: MPLUS1SemiBold;
     font-size: large;
     color:var(--primary-dark-color);
+}
+.total-price{
+
+    max-width: 35%;
+    height: fit-content;
+
+    padding-bottom: 0.5vh;
+    border:1pt solid #00000000;
+    border-bottom-color:var(--primary-dark-color);
+}
+
+.next-step-buttom{
+    margin-left:5vw;
+    max-width: 20%;
+    padding: 1vh 2vh;
+
+    font-family: MPLUS1Bold;
+    font-size: small;
 
     border:1pt solid var(--primary-dark-color);
-    border-top-color:#00000000;
-    border-left-color:#00000000;
-    border-right-color:#00000000;
 }
 

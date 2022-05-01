@@ -492,13 +492,17 @@ export default function ScreenCalendar(props) {
 
             <CalendarGenerator days-selected={selectedDays}>
             </CalendarGenerator>
-
-            <div className="total-price">
-                Total:
-                {rangeSelected['price']|0} €
-            </div>
-            <div className= 'next-step-buttom'>
-                Reservar
+            <div className="total-price-container">
+                <div className="total-price">
+                    Total:
+                    {rangeSelected['price']|0} €
+                </div>
+                {rangeSelected['price']!=0 && 
+                <div className= {`next-step-buttom`}
+                    onClick={()=>{props?.finalScreen()}}>
+                    RESERVAR
+                </div>
+                }
             </div>
 
             {alert['display'] == true &&
