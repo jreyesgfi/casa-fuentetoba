@@ -2,10 +2,12 @@ import './month-selector.css';
 import SelectionWheel from './SelectionWheel';
 
 import { fillWithZero } from '../../../../elements/parser/dateParser';
+import { useRef, useState } from 'react';
 
 export default function MonthSelector(props){
     var currentMonth = props?.currentMonth;
     var currentYear = props?.currentYear;
+    const [initialYear,setInitialYear] = useState(currentYear);
     const setSelection = props?.setSelection;
 
 
@@ -49,16 +51,19 @@ export default function MonthSelector(props){
                     <div>
                         <SelectionWheel 
                             className="date-selector-box"
-                            elementsArray={[currentYear,currentYear+1]}
+                            elementsArray={[initialYear,initialYear+1]}
                             width={25}
                             initialPos={0}
-                            callback={(year)=>{adjustMonth({'year':[currentYear,currentYear+1][year]})}}>
+                            callback={(year)=>{adjustMonth({'year':[initialYear,initialYear+1][year]})}}
+                            >
                         </SelectionWheel>
                         <SelectionWheel 
                             className="date-selector-box"
                             elementsArray={monthList}
                             initialPos={props.currentMonth-1}
-                            callback={(month)=>{adjustMonth({'month':month})}}>
+                            callback={(month)=>{adjustMonth({'month':month})}}
+                            clickCallback={()=>{props.onClick()}}
+                            >
                         </SelectionWheel>
                     </div>
                 }

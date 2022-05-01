@@ -166,7 +166,7 @@ export default function ScreenCalendar(props) {
                     'fecha': oneDay,
                     'indice': i,
                     'key': dateToString(oneDay),
-                    'ocupado': previousSchema['ocupado'],
+                    'ocupado': oneDay.getTime() >= new Date().getTime()?previousSchema['ocupado']:1,
                     'precio': previousSchema['precio'],
                     'situacion': situation,
                     'señalado': false,
@@ -496,6 +496,9 @@ export default function ScreenCalendar(props) {
             <div className="total-price">
                 Total:
                 {rangeSelected['price']|0} €
+            </div>
+            <div className= 'next-step-buttom'>
+                Reservar
             </div>
 
             {alert['display'] == true &&
