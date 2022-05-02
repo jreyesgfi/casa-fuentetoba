@@ -6,6 +6,7 @@ import {changeWindowOffset, offsetEventListener} from "../../operators/OffsetCon
 import ScreenGallery from "./ScreenGallery/ScreenGallery";
 import ScreenCharacteristics from "./ScreenCharacteristics/ScreenCharacteristics";
 import ScreenCalendar from "./ScreenCalendar/ScreenCalendar";
+import ScreenLocation from "./ScreenLocation/ScreenLocation";
 
 export default function ScreenController (props) {
     // create a static value for the offset
@@ -114,10 +115,10 @@ export default function ScreenController (props) {
                     screenStyle= {screenStyle}
                     focus= {2==appScreenNumber}>
                 </ScreenCharacteristics> 
-                <Screen1 
+                <ScreenLocation
                     screenStyle= {screenStyle}
                     focus= {3==appScreenNumber}>
-                </Screen1> 
+                </ScreenLocation> 
                 <ScreenCalendar 
                     screenStyle= {screenStyle}
                     focus= {4==appScreenNumber}

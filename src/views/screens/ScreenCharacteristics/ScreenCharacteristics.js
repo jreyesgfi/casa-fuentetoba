@@ -1,4 +1,5 @@
 import characteristicJSON from "../../../elements/characteristicDetails.json"
+import { LimitText } from "../../../operators/textEditor";
 import "./screen-characteristic.css"
 
 export default function ScreenCharacteristics(props) {
@@ -32,7 +33,7 @@ export default function ScreenCharacteristics(props) {
                             <img
                             src={characteristicJSON[element]['url']}
                             ></img>
-                            <h3> {characteristicJSON[element]['title']}</h3>
+                            <h3> {LimitText(characteristicJSON[element]['title'])}</h3>
                             <p> {characteristicJSON[element]['text']}</p>
                         </div>
                     )}

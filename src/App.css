@@ -20,7 +20,7 @@
   
 
   /*--nav-bar-height: 16vh;*/
-  --screen-header: 23vh;
+  --screen-header: 12vh;
 
   overflow-x: hidden;
 }
@@ -78,8 +78,10 @@ html, body, .app {
   top:0vh;
   left:0vh;
 
-  height:23vh;
+  height:var(--screen-header);
   width:100vw;
+
+  background-color: var(--primary-light-color);
 
   z-index: 90;
 }

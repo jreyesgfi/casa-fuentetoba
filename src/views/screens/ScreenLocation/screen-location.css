@@ -1,0 +1,48 @@
+.location-screen {
+
+}
+
+.map-responsive{
+    margin:auto;
+
+    height:42vh;
+    width:100vw;
+}
+
+.map-responsive iframe{
+    margin:auto;
+    height: 100%;
+    width: 100%;
+}
+
+.location-info-container{
+    position:relative;
+    margin:2vh 6vw;
+    padding:1.5vh 5vw;
+
+    justify-content: left;
+
+    border-left: 2pt solid var(--primary-dark-color);
+    background-color: var(--primary-light-color);
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.location-info-container *{
+    position:relative;
+    margin:0;
+
+    width:fit-content;
+}
+.location-info-container h3{
+    font-size: small;
+}
+
+.location-info-container p{
+    margin-top:1vh;
+
+    font-size:small;
+    text-align: left;
+}

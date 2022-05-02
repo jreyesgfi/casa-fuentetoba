@@ -8,14 +8,14 @@
     display:flex;
     flex-wrap: wrap;
 
-    justify-content: center;
+    justify-content: space-around;
 }
 
 .characteristic-container{
 position:relative;
 
-width: 30%;
-max-width: 32%;
+width: 28%;
+max-width: 28%;
 height: fit-content;
 max-height: 13vh;
 margin-bottom:1.5vh;
