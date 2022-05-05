@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Screen1 from './Screen1/Screen1';
+import ScreenFront from './ScreenFront/ScreenFront';
 import LoadingSpinner from "../spinner/Spinner";
 import BottomNavBar from "../nav/BottomNavBar";
 import {changeWindowOffset, offsetEventListener} from "../../operators/OffsetController";
@@ -7,6 +7,7 @@ import ScreenGallery from "./ScreenGallery/ScreenGallery";
 import ScreenCharacteristics from "./ScreenCharacteristics/ScreenCharacteristics";
 import ScreenCalendar from "./ScreenCalendar/ScreenCalendar";
 import ScreenLocation from "./ScreenLocation/ScreenLocation";
+import ScreenContact from "./ScreenContact/ScreenContact";
 
 export default function ScreenController (props) {
     // create a static value for the offset
@@ -90,23 +91,12 @@ export default function ScreenController (props) {
             <div className={props.isLoading?'Normal':'hide'}>
                 <LoadingSpinner/> 
             </div>
-            <div className= 'empty-bar' style={{
-                width:'100vw',
-                height:String(100-screenPercentage*100) + 'vh',
-                position:'fixed',
-                height:0,
-               }}>
-                {screenUpToDevice()}
-                <br></br>
-                {offset}
-                <br></br>
-                {utilScreenSize}
-            </div>
+            
             <div className={props.isLoading?'hide':'Normal'}>
-                <Screen1 
+                <ScreenFront 
                     screenStyle= {screenStyle}
                     focus= {0==appScreenNumber}>
-                </Screen1>
+                </ScreenFront>
                 <ScreenGallery
                     screenStyle= {screenStyle}
                     focus= {1==appScreenNumber}>
@@ -124,10 +114,10 @@ export default function ScreenController (props) {
                     focus= {4==appScreenNumber}
                     finalScreen= {()=>{moveToScreen(5)}}>
                 </ScreenCalendar> 
-                <Screen1 
+                <ScreenContact
                     screenStyle= {screenStyle}
                     focus= {5==appScreenNumber}>
-                </Screen1> 
+                </ScreenContact> 
                 <div className= 'empty-bar' style={{width:'100vw',height:String(100-screenPercentage*100) + 'vh'}}>
                 </div>
             {   /* BottomNavBar */  }

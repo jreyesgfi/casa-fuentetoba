@@ -16,7 +16,9 @@
 }
 
 
-
+.selection-panel{
+    animation:append-from-top 0.3s ease-out;
+}
 
 .date-text{
     position:relative;

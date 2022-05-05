@@ -7,7 +7,7 @@ export default function ScreenLocation(props) {
     return(
         <div className= "location-screen screen" style = {props.screenStyle}>
             <div className="header location-header">
-                <h2 className="header-title"> LOCATION</h2>
+                <h2 className="header-title"> Localización</h2>
                 <div className="header-division-line"></div>
             </div>
             <div className="map-responsive">

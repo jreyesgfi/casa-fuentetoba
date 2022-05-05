@@ -135,7 +135,7 @@ export default function ScreenCalendar(props) {
             // define the last ones
             const lastDay = new Date(dateSelected);
             lastDay.setDate(firstDay.getDate() + daysOfEachMonth[dateSelected.getMonth() + 1]);
-            const finalDays = 7 - ((lastDay.getDay() + 6) % 7) + 7;
+            const finalDays = 7 - ((lastDay.getDay() + 6) % 7);
 
             // fill the days
             for (var i = initialDays + priorDays; i < rangeOfPlot + finalDays; i++) {
@@ -223,7 +223,7 @@ export default function ScreenCalendar(props) {
      * Alert config
      */
     const [alert,setAlert]=useState({
-        'display':true,
+        'display':false,
         'severity':'info',//'success, info, warning or error',
         'message':'Seleccione una fecha de llegada.',
     });
@@ -240,6 +240,7 @@ export default function ScreenCalendar(props) {
 
     // range selected
     const [rangeSelected, setRangeSelected] = useState({
+        'rangeCompleted':false,
         'price':0,
         'days':[],
     });
@@ -318,6 +319,7 @@ export default function ScreenCalendar(props) {
 
         // set the Range selected with its price
         setRangeSelected({
+            'rangeCompleted':true,
             'price':totalPrice,
             'days':totalRange,
         });
@@ -381,7 +383,10 @@ export default function ScreenCalendar(props) {
                     'severity':'info',
                     'message':`Fecha ${targetKey} seleccionada como llegada, indique la fecha de salida.`,
                 });
-                setRangeSelected({'price':targetValue['precio']});
+                setRangeSelected({
+                    'rangeCompleted':false,
+                    'price':targetValue['precio']
+                });
                 console.log(rangeSelected)
             }
 
@@ -493,12 +498,12 @@ export default function ScreenCalendar(props) {
             <CalendarGenerator days-selected={selectedDays}>
             </CalendarGenerator>
             <div className="total-price-container">
-                <div className="total-price">
+                <div className={`total-price ${rangeSelected['rangeCompleted']!=false?'range-completed':'range-not-completed'}`}>
                     Total:
                     {rangeSelected['price']|0} €
                 </div>
-                {rangeSelected['price']!=0 && 
-                <div className= {`next-step-buttom`}
+                {rangeSelected['rangeCompleted']===true && 
+                <div className= {`next-step-buttom button`}
                     onClick={()=>{props?.finalScreen()}}>
                     RESERVAR
                 </div>

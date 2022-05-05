@@ -1,0 +1,37 @@
+.contact-info-container{
+    margin-top:10vh;
+
+    height:fit-content;
+}
+
+
+.contact-info-item{
+
+    margin: 7vh auto;
+
+    width:fit-content;
+    height: auto;
+    
+    display:grid;
+    justify-content: center;
+}
+
+.contact-info-item *{
+    margin:auto;
+
+    display: block;
+}
+
+.contact-info-item img{
+    margin-bottom:3vh;
+
+    max-width:14vw;
+}
+
+.contact-info-container p{
+    margin-top:220vh;
+    margin-bottom:8vh;
+
+    width:fit-content;
+    height: fit-content;
+}

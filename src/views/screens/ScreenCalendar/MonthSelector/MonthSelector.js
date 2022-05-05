@@ -48,7 +48,7 @@ export default function MonthSelector(props){
                     {`${monthsDict[currentMonth]}, ${currentYear}`}
                 </div>
                 {props?.selectingDay == true &&
-                    <div>
+                    <div className='selection-panel'>
                         <SelectionWheel 
                             className="date-selector-box"
                             elementsArray={[initialYear,initialYear+1]}

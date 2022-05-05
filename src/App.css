@@ -11,8 +11,9 @@
   --second-light-color: #ADB9CA;
 
 
-  --primary-colorful-color: #D65B10;
-  --primary-colorful-color-transparent: rgba(214, 92, 16, 0.616);
+  --primary-colorful-color: #aed05e;
+  --primary-colorful-color-transparent: rgba(174, 208, 94, 0.614);
+  --second-colorful-color-transparent: rgba(214, 92, 16, 0.616);
   --second-colorful-color: #038C8C;
   --third-colorful-color: #03A696;
 
@@ -129,6 +130,7 @@ html, body, .app {
 
 
   z-index:100;
+  animation:append-animate 0.3s ease-in;
 }
 
 /* general */
@@ -164,6 +166,8 @@ body{
   margin:auto;
 }
 
+/*Animations*/
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -172,6 +176,80 @@ body{
     transform: rotate(360deg);
   }
 }
+
+@keyframes append-animate {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;	
+	}
+}
+
+@keyframes append-from-right {
+	from {
+    transform: translateX(30%);
+		opacity: 0;
+	}
+	to {
+    transform: translateX(0%);
+		opacity: 1;	
+	}
+}
+@keyframes append-from-left {
+	from {
+    transform: translateX(-30%);
+		opacity: 0;
+	}
+	to {
+    transform: translateX(0%);
+		opacity: 1;	
+	}
+}
+@keyframes append-from-top {
+	from {
+    transform: translateY(-30%);
+		opacity: 0;
+	}
+	to {
+    transform: translateY(0%);
+		opacity: 1;	
+	}
+}
+
+@keyframes add-right-element {
+	from {
+		transform: translateX(30%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0%);
+		opacity: 1;	
+	}
+}
+
+@keyframes delete-right-element {
+	from {
+		transform: translateX(-30%);
+		opacity: 0.3;
+	}
+	to {
+		transform: translateX(0%);
+		opacity: 1;	
+	}
+}
+
+/* buttons presets*/
+.button:hover, .button:active{
+  background-color: var(--primary-colorful-color-transparent);
+  -webkit-transition: background-color 100ms ease-in;
+  -ms-transition: background-color 100ms ease-in;
+  transition: background-color 100ms ease-in;
+}
+
+
+
+
 
 
 .size-small{

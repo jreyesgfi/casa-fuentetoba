@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import './screen-gallery.css'
+import './screen-gallery.css';
+
+import undoIcon from "./../../../icons/undo-arrow.png"
 
 
 import { globalFolder } from '../../../operators/photoImporter/GalleryPhotoImporter';
@@ -25,6 +27,8 @@ export default function ScreenGallery(props) {
 
     /* DIFERENT ACTIONS WHEN CLICK */
 
+    // open the image
+    const [photoFullScreen,setPhotoFullScreen] = useState(false);
 
 
 
@@ -70,17 +74,18 @@ export default function ScreenGallery(props) {
         
 
         return(
-            <div className="main-photo-row flex-box">
+            <div className={`${!photoFullScreen? 'main-photo-row flex-box':'full-screen-photo'}`}>
                 <img 
                 src={globalFolder[selectedRoom][currentPhotoPos]['imgUrl']}
+                onClick={()=>{setPhotoFullScreen(!photoFullScreen)}}
                 >
                 </img>
                 <div className="contenedor-icono-cambio-imagen flex-box">
-                    <div className= 'prev-photo-button control-button'
+                    <div className= 'prev-photo-button button'
                         onClick={()=>{setMainPhotoNum(mainPhotoNum-1)}}>
                         {'<'}
                     </div>
-                    <div className= 'next-photo-button control-button'
+                    <div className= 'next-photo-button button'
                         onClick={()=>{setMainPhotoNum(mainPhotoNum+1)}}>
                         {'>'}
                     </div>
@@ -104,20 +109,34 @@ export default function ScreenGallery(props) {
                 <div className="header-division-line"></div>
                 
             </div>
-            <div className= "photo-container">
-                <div className="top-photo-row flex-box">
-                    {selectButtonGenerator('TERRAZA')}
-                    {selectButtonGenerator('SALÓN')}
-                </div>
+            {!photoFullScreen &&
+                <div className= "photo-container">
+                    <div className="top-photo-row flex-box">
+                        {selectButtonGenerator('TERRAZA')}
+                        {selectButtonGenerator('SALÓN')}
+                    </div>
 
-                {mainPhotoGenerator()}
+                    {mainPhotoGenerator()}
                 
-                <div className="bottom-photo-row flex-box">
-                    {selectButtonGenerator('BAÑOS')}
-                    {selectButtonGenerator('HABITACIONES')}
-                    {selectButtonGenerator('COCINA')}
+                    <div className="bottom-photo-row flex-box">
+                        {selectButtonGenerator('BAÑOS')}
+                        {selectButtonGenerator('HABITACIONES')}
+                        {selectButtonGenerator('COCINA')}
+                    </div>
                 </div>
-            </div>
+            }
+            {photoFullScreen &&
+                <div className= "full-screen-photo-container">
+                    <h2>{selectedRoom}</h2>
+                    {mainPhotoGenerator()}
+                    <div className="undo-buttom-container"
+                        onClick={()=>{setPhotoFullScreen(false)}}>
+                        <img src={undoIcon} className='undo-icon'></img>
+                    </div>
+                    
+                </div>
+            }
+            
 
         </div>
     )

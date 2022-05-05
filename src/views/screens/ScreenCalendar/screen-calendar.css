@@ -42,14 +42,16 @@
     top: 8vh;
     left:0;
 
-    margin:5vw;
-    margin-top:0vh;
-    margin-bottom:3vh;
+    margin:2vh auto 0 auto;
     
     width:92vw;
-    height:40vh;
-    padding:2vh 1vw 2vh 0;
+    height:fit-content;
     box-sizing: border-box;
+
+    border:2px solid var(--primary-dark-color);
+    border-top-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    background-color: var(--primary-dark-color);
 
     display:flex;
     flex-wrap: wrap;
@@ -62,12 +64,13 @@
 
     box-sizing: border-box;
 
-    height: auto;
+    height: 7vh;
     flex: 1 0 13%;
 
     color:var(--primary-dark-color);
 
     border:2px solid var(--primary-dark-color);
+    background-color: var(--primary-light-color);
 }
 
 .day-header{
@@ -81,24 +84,21 @@
     font-size:small;
 }
 
-/* Change the color of the cell depending on the day*/
-.calendar-container .today{
-    border:3pt solid var(--primary-colorful-color);
-}
+
 
 .calendar-container .ocupado{
+    border:2px solid var(--primary-light-color);
     background-color: var(--primary-dark-color);
 }
 
 .señalado{
-    background-color: var(--primary-colorful-color-transparent);
+    background-color: var(--primary-colorful-color);
     
 }
 
 .calendar-container .ocupado .day-header{
     color:var(--primary-light-color);
 }
-
 
 
 .calendar-container .incoming{
@@ -109,12 +109,16 @@
     visibility: hidden;
 }
 
+/* Change the color of the cell depending on the day*/
+.calendar-container .today{
+    border-radius: 20%;
+    border:2pt solid var(--primary-colorful-color);
+}
 
 /* price box*/
 .total-price-container{
-    position:relative;
-    left:5vw;
-    top:13vh;
+    position:absolute;
+    bottom:5vh;
 
     width:100%;
     
@@ -134,6 +138,7 @@
     padding-bottom: 0.5vh;
     border:1pt solid #00000000;
     border-bottom-color:var(--primary-dark-color);
+    transition: 3s;
 }
 
 .next-step-buttom{
@@ -145,5 +150,19 @@
     font-size: small;
 
     border:1pt solid var(--primary-dark-color);
+
+    animation:append-from-left 0.6s ease-out;
+    
 }
+
+
+.range-completed{
+    animation:add-right-element 0.6s ease-out;
+}
+
+.range-not-completed{
+    
+}
+
+
 
