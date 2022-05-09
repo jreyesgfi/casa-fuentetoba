@@ -8,31 +8,33 @@ import ScreenCharacteristics from "./ScreenCharacteristics/ScreenCharacteristics
 import ScreenCalendar from "./ScreenCalendar/ScreenCalendar";
 import ScreenLocation from "./ScreenLocation/ScreenLocation";
 import ScreenContact from "./ScreenContact/ScreenContact";
+import TopNavBar from "../nav/TopNavBar";
+import deviceUsed from "../../operators/SessionInformation/DeviceUsed";
 
 export default function ScreenController (props) {
     // create a static value for the offset
     //generalOffset = 0;
 
     // define the screen properties as states
-    const [offset,setOffset] = useState([0]);
+    const [offset,setOffset] = useState(0);
 
     const screenUpToDevice = () => {
-        const ua = navigator.userAgent;
         const ratio = window.devicePixelRatio || 1;
+        const device = deviceUsed();
         var height = 0;
         //tablet
-        if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+        if (device==='tablet') {
             height = window.innerHeight;
         }
         //mobile
-        else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+        else if (device==='mobile') {
             height = window.screen.height;
         }
         //desktop
         else{
             height = window.innerHeight;
         }
-        return window.innerHeight;
+        return height;
         
     };
     const [screenSize, setScreenSize] = useState(screenUpToDevice())
@@ -47,7 +49,7 @@ export default function ScreenController (props) {
 
     // Global values for the screen
     const screenHeightFactor = 1;
-    const navHeight = 16; //vh
+    const topNavHeight =0.1*screenSize;
 
     // update the offset
     useEffect( ()=> {
@@ -55,15 +57,15 @@ export default function ScreenController (props) {
     },[]);
 
     // change the window offset to move into a certain screen
-    const moveToScreen = function(numScreen,time){
+    const moveToScreen = function(numScreen){
         // numScreen starts in 0
-        changeWindowOffset(utilScreenSize*(numScreen),time);
+        changeWindowOffset(topNavHeight+utilScreenSize*(numScreen),offset,4000);
 
         console.log(screenPercentage, screenSize, utilScreenSize, offset)
     }
 
     // actually showed screen height
-    const screenPercentage = (100 * screenHeightFactor - navHeight)/100;
+    const screenPercentage = (100 * screenHeightFactor)/100;
     let utilScreenSize = screenPercentage * screenSize;
 
     // app Screen Number
@@ -93,6 +95,12 @@ export default function ScreenController (props) {
             </div>
             
             <div className={props.isLoading?'hide':'Normal'}>
+            {   /* BottomNavBar */  }
+                <TopNavBar
+                    appScreenNumber={appScreenNumber}
+                    moveToScreen={moveToScreen}
+                >
+                </TopNavBar>
                 <ScreenFront 
                     screenStyle= {screenStyle}
                     focus= {0==appScreenNumber}>
@@ -120,12 +128,12 @@ export default function ScreenController (props) {
                 </ScreenContact> 
                 <div className= 'empty-bar' style={{width:'100vw',height:String(100-screenPercentage*100) + 'vh'}}>
                 </div>
-            {   /* BottomNavBar */  }
+            {   /* BottomNavBar 
                 <BottomNavBar
                     appScreenNumber={appScreenNumber}
                     moveToScreen={moveToScreen}
                 >
-                </BottomNavBar>
+                </BottomNavBar>*/  }
             </div>
 
         </div>

@@ -5,7 +5,18 @@ export function offsetEventListener (scrollCallBack){
     return ()=> window.removeEventListener("scroll", scrollCallBack)
 }
 
-export function changeWindowOffset (offset=0,time=1000){
-    const nextPoint = (offset + window.scrollY)/2
-    window.scrollTo(0, offset);
+export function changeWindowOffset (offset=0, currentOffset=1000,time=1000,fps=500){
+    if (Math.abs(offset-currentOffset)<100 || time<0){
+        return ;
+    }
+    // await new Promise(()=>{
+    //     setTimeout(function() {
+    //         const newCurrentOffset = (offset-currentOffset)*time/fps+currentOffset;
+    //         changeWindowOffset(offset,newCurrentOffset,time-fps);
+    //         window.scrollTo(0,newCurrentOffset);
+    //     }, fps);
+    // });
+
+    window.scrollTo(0,offset);
+
 }

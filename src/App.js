@@ -3,6 +3,7 @@ import './App.css';
 import ScreenController from './views/screens/ScreenController';
 import BottomNavBar from './views/nav/BottomNavBar';
 import offsetEventListener from './operators/OffsetController';
+import ClickListener from './operators/Listeners/ClickListener';
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
     []
   )
 
+  //set the Listeners (they have the useEffect in their definition)
+  ClickListener(()=>{console.log('click', undefined)})
 
   
 

@@ -3,12 +3,12 @@
 }  
 
 :root {
-  --primary-dark-color : #012E40;
-  --second-dark-color: #025159;
+  --primary-dark-color : #012f41;
+  --second-dark-color: #012E40;
 
   --primary-light-color: #fcffff;
   --primary-light-color-trasparent:#fcfffff5;
-  --second-light-color: #ADB9CA;
+  --second-light-color: #f2fbff;
 
 
   --primary-colorful-color: #aed05e;
@@ -27,6 +27,13 @@
 }
 
 /*fonts*/
+@font-face { font-family: primary-light; src: url('./fonts/MPLUS1/MPLUS1-Thin.ttf') }
+@font-face { font-family: primary-normal; src: url('./fonts/MPLUS1/MPLUS1-Light.ttf') }
+@font-face { font-family: primary-bold; src: url('./fonts/MPLUS1/MPLUS1-Bold.ttf') }
+@font-face { font-family: primary-semibold; src: url('./fonts/MPLUS1/MPLUS1-SemiBold.ttf') }
+
+@font-face { font-family: title-test; src: url('./fonts/Oleo/SourceSerifPro-LightItalic.ttf') }
+
 @font-face { font-family: MPLUS1Light; src: url('./fonts/MPLUS1/MPLUS1-Thin.ttf') }
 @font-face { font-family: MPLUS1; src: url('./fonts/MPLUS1/MPLUS1-ExtraLight.ttf') }
 @font-face { font-family: MPLUS1Normal; src: url('./fonts/MPLUS1/MPLUS1-Light.ttf') }
@@ -227,6 +234,14 @@ body{
 		opacity: 1;	
 	}
 }
+@keyframes top-down{
+  from {
+		transform: translateY(-100%);
+	}
+	to {
+		transform: translateY(0%);
+	}
+}
 
 @keyframes delete-right-element {
 	from {
@@ -239,6 +254,29 @@ body{
 	}
 }
 
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+    scale:0;
+  }
+}
+
+.button {
+  position: relative;
+
+  width:min-content;
+  padding:4pt 10pt;
+
+  border:1pt solid var(--primary-colorful-color);
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.next-button{
+  background-color: var(--primary-colorful-color);
+}
+
 /* buttons presets*/
 .button:hover, .button:active{
   background-color: var(--primary-colorful-color-transparent);
@@ -246,6 +284,16 @@ body{
   -ms-transition: background-color 100ms ease-in;
   transition: background-color 100ms ease-in;
 }
+
+.ripple {
+  position: fixed; /* The absolute position we mentioned earlier */
+  border-radius: 50%;
+  scale:1;
+  animation: ripple 600ms linear;
+  background-color: var(--primary-colorful-color-transparent);
+  z-index:350;
+}
+
 
 
 

@@ -1,14 +1,21 @@
 :root {
+    --top-nav-height:min(max(8vh, 4vw), 250px);
     --bottom-nav-height:16vh;
 
     --evolution-circle-size:min(6vw, 50px);
   }
 
-.bottom-nav-bar{
+.nav-bar{
+    position:fixed;
+    width:100vw;
+
+    background-color: var(--primary-dark-color);
+
     z-index: 300;
 }
 
 /* multiple type of showing*/
+/*
 .focus{
     border-color:#ffffffff;
     
@@ -29,11 +36,8 @@
 }
 
 
-
 .bottom-nav-bar{
     bottom:0vh;
-    position:fixed;
-    
 
     background-color: var(--primary-light-color);
 
@@ -55,7 +59,6 @@
 
     height: 5vh;
     width:100vw;
-    
 
     background-color: var(--primary-light-color);
 }
@@ -73,7 +76,6 @@
 }
 
 .evolution-circle-container {
-    position:fixed;
     bottom:11vh;
 
     width: 98vw;
@@ -107,6 +109,7 @@
 
     border: 1.1vw dotted var(--primary-dark-color);
 }
+.op
 
 .icon-container{
     margin:auto 2vw;
@@ -115,8 +118,6 @@
     height:11vh;
 
     background-color: var(--primary-light-color);
-
-    /*border: 3px solid black;*/
 }
 
 .icon{
@@ -125,4 +126,4 @@
 
     z-index:150;
 
-}
+}*  */

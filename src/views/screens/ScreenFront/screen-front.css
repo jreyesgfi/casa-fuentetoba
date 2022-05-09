@@ -1,4 +1,201 @@
-.screen1{
+@keyframes frontal-img-appear-x{
+    from{
+        transform:translateX(-100%);
+        opacity:0.2;
+    }
+    to{
+        transform:translateX(0%);
+        opacity:1;
+    }
+}
+@keyframes frontal-img-desappear-x{
+    from{
+        transform:translateX(0%);
+    }
+    to{
+        transform:translateX(100%);
+
+    }
+}
+@keyframes frontal-img-appear-y{
+    from{
+        transform:translateY(-100%);
+        opacity:0.2;
+    }
+    to{
+        transform:translateY(0%);
+        opacity:1;
+    }
+}
+@keyframes frontal-img-desappear-y{
+    from{
+        transform:translateY(0%);
+    }
+    to{
+        transform:translateY(100%);
+
+    }
+}
+.screen-front{
+    background-color: var(--primary-light-color);
+}
+
+.front-image-container{
+    position:relative;
+
+    height:40vh;
+    background-color: var(--white-mask-color);
+}
+.small-info-panel{
+    margin-top:3vh;
+}
+h1{
+    position:relative;
+    margin:2vh auto 0;
+
+    max-width:max(25vw, 30vh);
+    padding:min(1vw,1vh);
+
+    font-size:min(max(2.8vw, 3vh), 30px);
+    
+    font-family:title-test;
+    
+
+    z-index:80;
+}
+.front-image-container img{
+    position: absolute;
+    top:0;
+    left:0;
+
+    width:100vw;
+    height:40vh;
+
+    min-width:100vw;
+
+    object-fit: cover;
+    object-position: 70% 80%;
+}
+.graphic-info{
+    background-color:  var(--second-light-color);
+    border-radius: 0.25rem;
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1);
+
+}
+.graphic-info, .other-info{
+    margin:auto 2vw 1vh 2vw;
+    display:flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: nowrap;
+}
+.each-container-info{
+    flex:1 0 24%;
+    flex-wrap: nowrap;
+    min-width:26%;
+    margin:0.5vh auto;
+}
+.other-info div{
+    flex:1 0 40%;
+    flex-direction: column-reverse;
+}
+.front-info-container .icon{
+    width:auto;
+    height: auto;
+    max-height: max(5vh, 4vw);
+    max-width:max(7vw, 6vh);
+}
+.front-info-container p{
+    margin:0 auto min(3vh,1.5vw) auto;
+    margin:0;
+    font-size:2.2vh;
+}
+
+.price-container h2, .price-container img{
+    display:inline;
+    font-size: 4vh;
+}
+
+.price-container .icon{
+    width:max(2vw, 3vh);
+    max-width: 3.5vh;
+
+    max-height: none;
+    height: auto;
+}
+
+.price-container p{
+    margin-top:0vw;
+
+    font-size: 2vh;
+
+}
+
+
+.buttons-container{
+    margin:2vh auto auto;
+    display:grid;
+    grid-template-columns: 
+        2vw [start-first-button] 50vw [end-first-button] 2vw
+        [start-second-button] 40vw auto [end-second-button] 2vw;
+        grid-template-rows: [first] auto [end];
+    justify-content: center;
+    align-items: center;
+    max-width:300px;
+}
+.buttons-container *{
+    margin:auto 1vw;
+    position:absolute;
+    inset: 0;
+
+    width:auto;
+    height: min-content;
+    justify-content: center;
+}
+
+.buttons-container div{
+    position:relative;
+    margin:auto 1vw;
+    width:auto;
+    min-height:5vh;
+}
+.buttons-container p{
+    margin:auto;
+}
+
+
+
+.other-button{
+    grid-column: start-first-button / end-first-button;
+    grid-row: auto;
+    display:flex;
+    justify-content: center;
+}
+.other-button *{
+    position:relative;
+    flex:auto 0 20%;
+}
+.other-button .icon{
+    max-height: 5vh;
+}
+
+.next-button{
+    grid-column: start-second-button / end-second-button;
+    grid-row:first / end;
+}
+
+
+
+/* main Images*/
+.new-front-image{
+    animation:frontal-img-appear-x 1.2s ease-in;
+    z-index:40;
+}
+.last-front-image{
+    animation:frontal-img-desappear-x 1.2s ease-in;
+    z-index:20;
+}
+/* .screen1{
     background: var(--primary-light-color);
     z-index: 0;
 }
@@ -39,7 +236,7 @@
 
     z-index:20;
 }
-/*to make the shape of the photo*/
+/*to make the shape of the photo
 .image-cut{
     position: absolute;
     left: 0px;
@@ -65,7 +262,7 @@ p{
     position:absolute;
     bottom:0;
     margin-bottom:20vh;
-}
+} */
 
 
 
@@ -75,8 +272,91 @@ p{
 
 
 @media only screen and (max-width: 500px){
-
+    /* h1{
+        padding:0 1vw 1vh 0vw;
+        border:0.8vw solid var(--primary-dark-color);
+        border-left-color:#ffffff00;
+        border-top-color:#ffffff00;
+    } */
+    h1{
+        max-width:80vw;
+    }
 }
-@media only screen and (min-width: 900px){
+@media only screen and (min-width: 700px){
+    .front-image-container{
+        width:70vw;
+        margin-right: 0;
+        margin-left:auto;
+    }
+    .front-image-container img{
+        right:0;
+        height:calc(100vh - var(--top-nav-height));
+        min-width:70vw;
+        width:70vw;
+    }
+    .front-info-container{
+        position:absolute;
+        top:2vh;
+        left:0;
+        right:71vw;
+        
+        width:27vw;
+        margin:auto;
+
+    }
+
+    .small-description-container{
+        margin-top:-2vh;
+    }
+    .graphic-info {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .each-container-info{
+        flex:1 0 90%;
+        max-height: none;
+        margin-bottom:2vh;
+    }
+    .new-front-image{
+        animation:frontal-img-appear-y 1.2s ease-in;
+        z-index:40;
+    }
+    .last-front-image{
+        animation:frontal-img-desappear-y 1.2s ease-in;
+        z-index:20;
+    }
+
+    .graphic-info .icon{
+        width:auto;
+        height: auto;
+        max-height: 5vh;
+        max-width:4vw;
+    }
+
+    .buttons-container{
+        margin-top:3vh;
+        grid-template-columns: 
+        [start-button] 80% [end-button];
+
+        grid-template-rows: [start-first-button] auto [end-first-button] 1vh
+        [start-second-button] auto [end-second-button] 2vw;
+        justify-content: center;
+        
+    }
+    .buttons-container div{
+        height: min-content;
+        min-height:5vh;
+    }
+    .next-button{
+        grid-column:start-button / end-button;
+        grid-row: start-first-button /end-first-button;
+    }
+    .other-button{
+        grid-column:start-button / end-button;
+        grid-row: start-second-button /end-second-button;
+    }
+    .buttons-container .icon{
+        flex:0;
+    }
 
 }
