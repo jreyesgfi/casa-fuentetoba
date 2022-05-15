@@ -16,7 +16,7 @@ export default function ScreenFront(props){
     const [currentImagePos, setCurrentImagePos] = useState(0);
     const [images,setImages] = useState(importImages("../images/portada/")[0]);
     const size = images?.length||0;
-    const [infLoop, setInfLoop] = useState(false);
+    const [infLoop, setInfLoop] = useState(true);
     
     const price = 15;
     const description = "Esta sería la descripción."
@@ -29,15 +29,14 @@ export default function ScreenFront(props){
 
     // define a timer loop to change the currenImage
     async function autoChangeImage(timeInMs){
-        // define a function to wait 
-        await new Promise(() => {
-            setTimeout(() => {
-                if (infLoop===true){
+        if (infLoop===true){
+            // define a function to wait 
+            await new Promise(() => {
+                setTimeout(() => {
                     setCurrentImagePos((currentImagePos+1)%size);
-                }
-            }, timeInMs);
-        });
-        
+                }, timeInMs);
+            });
+        }  
     }
 
     
@@ -51,7 +50,7 @@ export default function ScreenFront(props){
         return (
             <div>
                 {size !== 0 && <div
-                onClick={()=>{props.stop()}}
+                onClick={()=>{setInfLoop(!infLoop)}}
                 className='front-image-container'>
                     <img
                     src={images?.[currentImagePos]}
@@ -137,7 +136,9 @@ export default function ScreenFront(props){
                         </div>
                         <div className='button other-button'
                         onClick={()=>{
-                            if(deviceUsed()==='desktop'){}
+                            if(deviceUsed()==='desktop'){
+                                navigator.clipboard.writeText(649290487)
+                            }
                             else{window.open('tel://649290487')}
                         }}>
                             <img src={icons['darkPhone.svg']}

@@ -291,7 +291,7 @@ body{
   scale:1;
   animation: ripple 600ms linear;
   background-color: var(--primary-colorful-color-transparent);
-  z-index:350;
+  z-index:300;
 }
 
 

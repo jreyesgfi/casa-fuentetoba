@@ -4,23 +4,25 @@ import { useState } from "react";
 
 export default function CreateRipple(props){
     const event = props?.event||null;
-    if (!event){
-        console.log(null)
-        return null;
-    }
-    console.log(event)
-    
 
+    if (!event){
+        return (
+            null
+        );
+    }
+    
+    const width= 20;
+    const height=20;
 
     const style={
-        width:'40px',
-        height:'40px',
-        top:`${event.clientY}px`,
-        left : `${event.clientX}px`
+        width:`${width}px`,
+        height:`${height}px`,
+        top:`${(event?.clientY||event.y)-height/2}px`,
+        left : `${(event?.clientX||event.x)-width/2}px`
     };
 
     return(
-            <span className='ripple' style={style}>
-            </span> 
+        <div className='ripple' style={style}>
+        </div> 
     )
 }

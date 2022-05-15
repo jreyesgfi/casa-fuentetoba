@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import ScreenController from './views/screens/ScreenController';
 import BottomNavBar from './views/nav/BottomNavBar';
 import offsetEventListener from './operators/OffsetController';
-import ClickListener from './operators/Listeners/ClickListener';
+import ClickListener, { conse } from './operators/Listeners/ClickListener';
+import CreateRipple from './views/buttons/Ripple';
 
 
 function App() {
@@ -17,13 +18,29 @@ function App() {
       setTimeout(()=>
         {
           setIsLoading(false);
-        }, 2000)
+        }, 3000)
     },
     []
   )
 
   //set the Listeners (they have the useEffect in their definition)
-  ClickListener(()=>{console.log('click', undefined)})
+  // const [rippleEvent, setRippleEvent] = useState(null);
+
+  // ClickListener(async (e, ref) => {
+  //   //Create the ripple
+  //   setRippleEvent(e);
+
+  //   //
+  //   console.log(ref)
+  //   await new Promise(() => {
+  //     setTimeout(() => {
+  //       setRippleEvent(null);
+  //     }, 500);
+  //   });
+
+  // }, 'hola');
+  
+  
 
   
 
@@ -34,6 +51,8 @@ function App() {
     <div className="App">
       <ScreenController isLoading={isLoading}>
       </ScreenController>
+      {/* <CreateRipple event ={rippleEvent}>
+      </CreateRipple> */}
     </div>
   );
 }

@@ -87,7 +87,7 @@ export default function ScreenController (props) {
     return(
         
 
-        <div key={props.isLoading} className="hi">
+        <div key={props.isLoading} className="all-screens-container">
             { //Build all the screens or load, but both are loading
             }
             <div className={props.isLoading?'Normal':'hide'}>

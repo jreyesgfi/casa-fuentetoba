@@ -110,19 +110,13 @@ export default function ScreenGallery(props) {
                 
             </div>
             {!photoFullScreen &&
-                <div className= "photo-container">
+                <div className= "photos-container">
                     <div className="top-photo-row flex-box">
-                        {selectButtonGenerator('TERRAZA')}
-                        {selectButtonGenerator('SALÓN')}
+                        {['TERRAZA', 'SALÓN', 'BAÑOS', 'HABITACIONES', 'COCINA'].map(
+                            (room)=>selectButtonGenerator(room)
+                        )}
                     </div>
-
                     {mainPhotoGenerator()}
-                
-                    <div className="bottom-photo-row flex-box">
-                        {selectButtonGenerator('BAÑOS')}
-                        {selectButtonGenerator('HABITACIONES')}
-                        {selectButtonGenerator('COCINA')}
-                    </div>
                 </div>
             }
             {photoFullScreen &&

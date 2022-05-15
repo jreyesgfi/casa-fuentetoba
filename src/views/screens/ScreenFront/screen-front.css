@@ -14,7 +14,7 @@
     }
     to{
         transform:translateX(100%);
-
+        opacity:0;
     }
 }
 @keyframes frontal-img-appear-y{
@@ -33,7 +33,7 @@
     }
     to{
         transform:translateY(100%);
-
+        opacity:0;
     }
 }
 .screen-front{
@@ -58,6 +58,7 @@ h1{
 
     font-size:min(max(2.8vw, 3vh), 30px);
     
+    letter-spacing: 3pt;
     font-family:title-test;
     
 

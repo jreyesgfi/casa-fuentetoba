@@ -22,7 +22,7 @@ function TopNavBar(props) {
 
   const [eventToSend, setEventToSend] = useState(null);
 
-  useEffect(async()=>{console.log('eventToSendChanged')
+  useEffect(async()=>{//console.log('eventToSendChanged')
     if (eventToSend!==null){
       await new Promise(() => {
         setTimeout(() => {
@@ -49,7 +49,7 @@ function TopNavBar(props) {
                     setEventToSend(event);
                 }}
                 onMouseEnter={(event)=>{
-                  console.log(event['nativeEvent']['path']);
+                  //
                   // const container = event['nativeEvent']['path'][0];
                   // container.classList.add("ripple");
 
