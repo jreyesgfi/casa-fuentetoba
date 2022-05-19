@@ -6,9 +6,11 @@
   --primary-dark-color : #012f41;
   --second-dark-color: #012E40;
 
-  --primary-light-color: #fcffff;
+  --primary-light-color: rgba(252, 255, 255,1);
   --primary-light-color-trasparent:#fcfffff5;
   --second-light-color: #f2fbff;
+
+  --primary-grey-color: #949a9e;
 
 
   --primary-colorful-color: #aed05e;
@@ -18,6 +20,7 @@
   --third-colorful-color: #03A696;
 
   --white-mask-color:#ffffff9c;
+  --light-white-mask-color:#ffffff30;
   
 
   /*--nav-bar-height: 16vh;*/
@@ -47,7 +50,10 @@
 html, body, .app {
   text-align: center;
   max-width: 100%;
-  overflow-x: hidden;
+}
+
+.App{
+  overflow-y:hidden;
 }
 
 
@@ -155,7 +161,7 @@ body{
 }
 
 .flex-item{
-  flex-grow:1;
+  flex:1 0 auto;
 }
 
 
@@ -191,6 +197,15 @@ body{
 	to {
 		opacity: 1;	
 	}
+}
+
+@keyframes desappear {
+  from{
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 @keyframes append-from-right {
@@ -259,6 +274,14 @@ body{
     transform: scale(4);
     opacity: 0;
     scale:0;
+  }
+}
+@keyframes select-text {
+  from{
+    letter-spacing: 0;
+  }
+  to {
+    letter-spacing: 0.3vw;
   }
 }
 

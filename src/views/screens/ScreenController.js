@@ -28,11 +28,11 @@ export default function ScreenController (props) {
         }
         //mobile
         else if (device==='mobile') {
-            height = window.screen.height;
+            height = window.screen.height - 200;
         }
         //desktop
         else{
-            height = window.innerHeight;
+            height = window.innerHeight - 65;
         }
         return height;
         
@@ -40,8 +40,10 @@ export default function ScreenController (props) {
     const [screenSize, setScreenSize] = useState(screenUpToDevice())
     
     useEffect(
-        ()=>{setScreenSize(screenUpToDevice())},
-        [screenUpToDevice()]
+        ()=>{
+            console.log('size', screenUpToDevice())
+            setScreenSize(screenUpToDevice())},
+        [window.innerHeight]
     )
 
     //***************************//
@@ -53,15 +55,13 @@ export default function ScreenController (props) {
 
     // update the offset
     useEffect( ()=> {
-        offsetEventListener(()=>{setOffset(window.scrollY)})
-    },[]);
+        setOffset(window.scrollY)
+    },[window.scrollY]);
 
     // change the window offset to move into a certain screen
     const moveToScreen = function(numScreen){
         // numScreen starts in 0
-        changeWindowOffset(topNavHeight+utilScreenSize*(numScreen),offset,4000);
-
-        console.log(screenPercentage, screenSize, utilScreenSize, offset)
+        changeWindowOffset(screenSize*(numScreen),offset,4000);
     }
 
     // actually showed screen height
@@ -80,7 +80,8 @@ export default function ScreenController (props) {
     // define the dimensions of the general screen
     const screenStyle = {
         position:'relative',
-        height:String(screenPercentage*100) + 'vh'
+        height:String(screenSize) + 'px',
+        border:'1pt solid red'
     }
 
 
@@ -103,15 +104,18 @@ export default function ScreenController (props) {
                 </TopNavBar>
                 <ScreenFront 
                     screenStyle= {screenStyle}
-                    focus= {0==appScreenNumber}>
+                    focus= {0==appScreenNumber}
+                    moveToScreen= {()=>{moveToScreen(1)}}>
                 </ScreenFront>
                 <ScreenGallery
                     screenStyle= {screenStyle}
-                    focus= {1==appScreenNumber}>
+                    focus= {1==appScreenNumber}
+                    moveToScreen= {()=>{moveToScreen(2)}}>
                 </ScreenGallery>
                 <ScreenCharacteristics 
                     screenStyle= {screenStyle}
-                    focus= {2==appScreenNumber}>
+                    focus= {2==appScreenNumber}
+                    moveToScreen= {()=>{moveToScreen(3)}}>
                 </ScreenCharacteristics> 
                 <ScreenLocation
                     screenStyle= {screenStyle}

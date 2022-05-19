@@ -44,7 +44,9 @@ function TopNavBar(props) {
               const iconName = icon[1];
               return  (
                 <div className='icon-container'
+                key={IDGenerator()}
                 onClick = {(event)=>{
+                    console.log(index)
                     props.moveToScreen(index);
                     setEventToSend(event);
                 }}

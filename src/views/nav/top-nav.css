@@ -20,7 +20,7 @@
 }
 
 .icons-container{
-    margin:max(0.5vh, 0.5vw) 1vw 0 auto;
+    margin:min(1.1vh, 3vw) 1vw 0 auto;
 
     display:flex;
     justify-content: right;

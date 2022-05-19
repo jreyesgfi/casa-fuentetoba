@@ -9,6 +9,7 @@ import { importIcons, importImages } from '../../../operators/imagesImporter';
 import iconDictionary, { globalIcons } from '../../../operators/iconsImporter/iconsExporter';
 import IDGenerator from '../../../operators/IdGenerator';
 import deviceUsed from '../../../operators/SessionInformation/DeviceUsed';
+import NextButton from '../../buttons/Next-Button';
 
 
 export default function ScreenFront(props){
@@ -48,10 +49,9 @@ export default function ScreenFront(props){
         
 
         return (
-            <div>
+            <div className='front-image-container'>
                 {size !== 0 && <div
-                onClick={()=>{setInfLoop(!infLoop)}}
-                className='front-image-container'>
+                onClick={()=>{setInfLoop(!infLoop)}}>
                     <img
                     src={images?.[currentImagePos]}
                     className={`new-front-image 
@@ -131,9 +131,8 @@ export default function ScreenFront(props){
                     </div>
                     
                     <div className='buttons-container'>
-                        <div className='button next-button'>
-                            <p>Siguiente</p>
-                        </div>
+                        <NextButton nextScreen={()=>props?.moveToScreen()}>
+                        </NextButton>
                         <div className='button other-button'
                         onClick={()=>{
                             if(deviceUsed()==='desktop'){

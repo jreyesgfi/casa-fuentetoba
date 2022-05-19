@@ -14,7 +14,7 @@ var cocinaFolder = [];
 
 
 export const globalFolder={
-    'TERRAZA': terrazaFolder,
+    'JARDÍN': terrazaFolder,
     'SALÓN': salonFolder,
     'BAÑOS':bañosFolder,
     'HABITACIONES':habitacionesFolder,
@@ -47,7 +47,7 @@ const ejemploDocumento4= {
 
 const ejemploDocumento5= {
     'imgUrl':'/images/photolake/terraza/terraza-2.jpeg',
-    'room':'TERRAZA',
+    'room':'JARDÍN',
     'place':6,
 }
 
@@ -59,7 +59,7 @@ const ejemploDocumento6= {
 
 const ejemploDocumento7= {
     'imgUrl':'/images/photolake/terraza/terraza-1.jpeg',
-    'room':'TERRAZA',
+    'room':'JARDÍN',
     'place':6,
 }
 

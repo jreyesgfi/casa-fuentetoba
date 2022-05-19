@@ -6,12 +6,13 @@ import undoIcon from "./../../../icons/undo-arrow.png"
 
 import { globalFolder } from '../../../operators/photoImporter/GalleryPhotoImporter';
 import { setOffset } from '../../../operators/OffsetController';
+import NextButton from '../../buttons/Next-Button';
 
 
 export default function ScreenGallery(props) {
     //example of photo dict
     const roomDict = {
-        'TERRAZA':"/images/photolake/terraza/terraza-2.jpeg",
+        'JARDÍN':"/images/photolake/terraza/terraza-2.jpeg",
         'SALÓN':"/images/photolake/salon/salon-1.jpeg",
         'BAÑOS':"/images/photolake/baño/baño-1.jpeg",
         'HABITACIONES':"/images/photolake/habitacion/habitacion-1.jpeg",
@@ -35,7 +36,11 @@ export default function ScreenGallery(props) {
     // generate the buttons to select room
     const selectButtonGenerator= function(name){
         return(
-            <div className= "flex-item room-buttons-container"
+            <div className= {`flex-item  
+                room-button-container
+                ${name==selectedRoom?
+                'selected':'not-selected'}
+                `}
                 onClick = {()=>{
                     setSelectedRoom(name);
                     setMainPhotoNum(0);
@@ -45,9 +50,7 @@ export default function ScreenGallery(props) {
                     src={roomDict[name]}
               ></img>
               <div className= 
-              {`button-mask  
-                ${name==selectedRoom?
-                'selected':'not-selected'}`}>
+              {`button-mask`}>
               </div>
               <p className={`${name==selectedRoom?
                 'white-text':'dark-text'}`
@@ -74,20 +77,20 @@ export default function ScreenGallery(props) {
         
 
         return(
-            <div className={`${!photoFullScreen? 'main-photo-row flex-box':'full-screen-photo'}`}>
+            <div className={`${!photoFullScreen? 'main-photo-container':'full-screen-photo'}`}>
                 <img 
                 src={globalFolder[selectedRoom][currentPhotoPos]['imgUrl']}
                 onClick={()=>{setPhotoFullScreen(!photoFullScreen)}}
                 >
                 </img>
-                <div className="contenedor-icono-cambio-imagen flex-box">
+                <div className="change-photo-container flex-box">
                     <div className= 'prev-photo-button button'
                         onClick={()=>{setMainPhotoNum(mainPhotoNum-1)}}>
-                        {'<'}
+                        <p>{'<'}</p>
                     </div>
                     <div className= 'next-photo-button button'
                         onClick={()=>{setMainPhotoNum(mainPhotoNum+1)}}>
-                        {'>'}
+                        <p>{'>'}</p>
                     </div>
                 </div>
             </div>
@@ -110,14 +113,14 @@ export default function ScreenGallery(props) {
                 
             </div>
             {!photoFullScreen &&
-                <div className= "photos-container">
-                    <div className="top-photo-row flex-box">
-                        {['TERRAZA', 'SALÓN', 'BAÑOS', 'HABITACIONES', 'COCINA'].map(
-                            (room)=>selectButtonGenerator(room)
-                        )}
-                    </div>
-                    {mainPhotoGenerator()}
+            <div className= "photos-container">
+                <div className="room-buttons-container flex-box">
+                    {['JARDÍN', 'SALÓN', 'BAÑOS', 'HABITACIONES', 'COCINA'].map(
+                        (room)=>selectButtonGenerator(room)
+                    )}
                 </div>
+                {mainPhotoGenerator()}
+            </div>
             }
             {photoFullScreen &&
                 <div className= "full-screen-photo-container">
@@ -130,6 +133,8 @@ export default function ScreenGallery(props) {
                     
                 </div>
             }
+            <NextButton nextScreen={()=>props?.moveToScreen()}>
+            </NextButton>
             
 
         </div>

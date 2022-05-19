@@ -37,32 +37,21 @@
     }
 }
 .screen-front{
+    position: relative;
+
     background-color: var(--primary-light-color);
+}
+
+/*main image*/
+.screen-front{
+    z-index:0;
 }
 
 .front-image-container{
     position:relative;
 
-    height:40vh;
+    height:40%;
     background-color: var(--white-mask-color);
-}
-.small-info-panel{
-    margin-top:3vh;
-}
-h1{
-    position:relative;
-    margin:2vh auto 0;
-
-    max-width:max(25vw, 30vh);
-    padding:min(1vw,1vh);
-
-    font-size:min(max(2.8vw, 3vh), 30px);
-    
-    letter-spacing: 3pt;
-    font-family:title-test;
-    
-
-    z-index:80;
 }
 .front-image-container img{
     position: absolute;
@@ -70,12 +59,49 @@ h1{
     left:0;
 
     width:100vw;
-    height:40vh;
+    height:100%;
 
     min-width:100vw;
 
     object-fit: cover;
     object-position: 70% 80%;
+}
+/* main Images*/
+.new-front-image{
+    animation:frontal-img-appear-x 1.2s ease-in;
+    z-index:40;
+}
+.last-front-image{
+    animation:frontal-img-desappear-x 1.2s ease-in;
+    z-index:20;
+}
+
+/*the info panel*/
+
+.front-info-container{
+    position: relative;
+    height: 58%;
+}
+
+/*title*/
+h1{
+    position:relative;
+    margin:3% auto 0;
+
+    width:100%;
+    padding:min(1vw,1vh);
+
+    font-size:min(max(2.8vw, 3vh), 30px);
+    
+    letter-spacing: 2pt;
+    font-family:title-test;
+
+    z-index:80;
+}
+
+/* small description*/
+.small-info-panel{
+    margin-top:3%;
 }
 .graphic-info{
     background-color:  var(--second-light-color);
@@ -84,7 +110,7 @@ h1{
 
 }
 .graphic-info, .other-info{
-    margin:auto 2vw 1vh 2vw;
+    margin:auto 2vw 0 2vw;
     display:flex;
     justify-content: center;
     align-items: baseline;
@@ -109,17 +135,17 @@ h1{
 .front-info-container p{
     margin:0 auto min(3vh,1.5vw) auto;
     margin:0;
-    font-size:2.2vh;
+    font-size:1.8vh;
 }
 
 .price-container h2, .price-container img{
     display:inline;
-    font-size: 4vh;
+    font-size: 3.5vh;
 }
 
 .price-container .icon{
-    width:max(2vw, 3vh);
-    max-width: 3.5vh;
+    width:max(1.5vw, 2vh);
+    max-width: 3vh;
 
     max-height: none;
     height: auto;
@@ -128,17 +154,19 @@ h1{
 .price-container p{
     margin-top:0vw;
 
-    font-size: 2vh;
+    font-size: 1.5vh;
 
 }
 
-
+/*buttons*/
 .buttons-container{
-    margin:2vh auto auto;
+    position:absolute;
+    inset:auto 0 0 auto;
+    margin:auto 10% 3%;
     display:grid;
     grid-template-columns: 
-        2vw [start-first-button] 50vw [end-first-button] 2vw
-        [start-second-button] 40vw auto [end-second-button] 2vw;
+        2vw [start-first-button] 45vw [end-first-button] 2vw
+        [start-second-button] 35vw auto [end-second-button] 2vw;
         grid-template-rows: [first] auto [end];
     justify-content: center;
     align-items: center;
@@ -158,13 +186,11 @@ h1{
     position:relative;
     margin:auto 1vw;
     width:auto;
-    min-height:5vh;
+    min-height:4vh;
 }
 .buttons-container p{
     margin:auto;
 }
-
-
 
 .other-button{
     grid-column: start-first-button / end-first-button;
@@ -184,18 +210,13 @@ h1{
     grid-column: start-second-button / end-second-button;
     grid-row:first / end;
 }
-
-
-
-/* main Images*/
-.new-front-image{
-    animation:frontal-img-appear-x 1.2s ease-in;
-    z-index:40;
+.screen-front .next-button p{
+    position:absolute;
+    inset:1vh 0 auto;
+    font-size:2.5vh;
 }
-.last-front-image{
-    animation:frontal-img-desappear-x 1.2s ease-in;
-    z-index:20;
-}
+
+
 /* .screen1{
     background: var(--primary-light-color);
     z-index: 0;
@@ -302,6 +323,7 @@ p{
         right:71vw;
         
         width:27vw;
+        height: 90%;
         margin:auto;
 
     }
@@ -335,7 +357,8 @@ p{
     }
 
     .buttons-container{
-        margin-top:3vh;
+        position:relative;
+        margin:5vh auto;
         grid-template-columns: 
         [start-button] 80% [end-button];
 
