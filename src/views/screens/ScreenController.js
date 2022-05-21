@@ -119,7 +119,8 @@ export default function ScreenController (props) {
                 </ScreenCharacteristics> 
                 <ScreenLocation
                     screenStyle= {screenStyle}
-                    focus= {3==appScreenNumber}>
+                    focus= {3==appScreenNumber}
+                    moveToScreen= {()=>{moveToScreen(4)}}>
                 </ScreenLocation> 
                 <ScreenCalendar 
                     screenStyle= {screenStyle}

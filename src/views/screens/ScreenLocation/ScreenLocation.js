@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import NextButton from '../../buttons/Next-Button';
 import './screen-location.css'
 
 export default function ScreenLocation(props) {
@@ -25,10 +26,14 @@ export default function ScreenLocation(props) {
                 <h3 className="postal-code-info">
                     42190, Soria
                 </h3>
-                <p>
-                    Pueblo situado a menos de 10km de Soria, Castilla y León. Situada al 
+                {/* <p>
+                    Pueblo situado a menos de 10km de Soria, Castilla y León. Situada al
                     pie del pico frentes da lugar al hermoso nacimiento del arroyo La Toba.
-                </p>
+                </p> */}
+            </div>
+            <div className='process-buttons-container'>
+                <NextButton nextScreen={()=>props?.moveToScreen()}>
+                </NextButton>
             </div>
         </div>
     )
