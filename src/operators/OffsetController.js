@@ -16,7 +16,6 @@ export function changeWindowOffset (offset=0, currentOffset=1000,time=1000,fps=5
     //         window.scrollTo(0,newCurrentOffset);
     //     }, fps);
     // });
-    console.log(offset)
     window.scrollTo(0,0);
     window.scrollTo(0,offset);
 

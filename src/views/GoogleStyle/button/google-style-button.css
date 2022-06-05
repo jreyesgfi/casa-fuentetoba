@@ -1,0 +1,20 @@
+.google-style-button{
+    width:fit-content;
+    padding: 0.8vh 1.2vh 0.6vh 1.2vh;
+    border-radius: 5px;
+    box-sizing: conten-box;
+
+    background-color: var(--google-blue-color);
+    color: #fff;
+    transition:0.1s ease;
+}
+.google-style-button:hover{
+    background-color: var(--google-darkblue-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    color: #fff;
+}
+
+.border-button {
+    background-color: #ffffff00;
+
+    color:var(--google-darkblue-color)}

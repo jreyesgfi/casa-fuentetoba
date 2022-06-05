@@ -4,6 +4,7 @@
 
 :root {
   --primary-dark-color : #012f41;
+  --primary-dark-color-transparent : #012f4167;
   --second-dark-color: #012E40;
 
   --primary-light-color: rgba(252, 255, 255,1);
@@ -11,7 +12,12 @@
   --second-light-color: #f2fbff;
 
   --primary-grey-color: #949a9e;
+  --primary-light-grey-color: #d3d5d7;
+  --greytotext-color:#5f6368;
 
+
+  --primary-red-color: #ac2f2f;
+  --primary-green-color: var(--primary-colorful-color);
 
   --primary-colorful-color: #aed05e;
   --primary-colorful-color-transparent: rgba(174, 208, 94, 0.614);
@@ -22,6 +28,12 @@
   --white-mask-color:#ffffff9c;
   --light-white-mask-color:#ffffff30;
   
+  /* google colors*/
+  --google-lightgrey-color:#d3d3d3;
+  --google-grey-color:#939393;
+  --google-blue-color:#4285f4;
+  --google-darkblue-color:#1b66c9;
+
 
   /*--nav-bar-height: 16vh;*/
   --screen-header: 12vh;
@@ -54,6 +66,7 @@ html, body, .app {
 
 .App{
   overflow-y:hidden;
+  overflow-x:hidden;
 }
 
 
@@ -133,13 +146,13 @@ html, body, .app {
 
 .alert{
   position:absolute;
-  top:0vh;
+  bottom:0vh;
   left:0;
   right:0;
   margin:auto;
   
   width:92vw;
-  height:8vh;
+  height:min-content;
 
 
   z-index:100;
@@ -295,22 +308,43 @@ body{
   }
 }
 
+@keyframes fadding-out{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+
+
+/* buttons presets*/
+
 .button {
   position: relative;
 
   width:min-content;
   padding:4pt 10pt;
+  padding:1vh 8vw;
 
   border:1pt solid var(--primary-colorful-color);
   border-radius: 0.25rem;
   box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
+
+.process-buttons-container{
+  inset:auto min(6vw,4vh) 3vh auto;
+  position:absolute;
+  margin:auto;
+  
+  width:fit-content;
+}
 .next-button{
   background-color: var(--primary-colorful-color);
 }
 
-/* buttons presets*/
+
 .button:hover, .button:active{
   background-color: var(--primary-colorful-color-transparent);
   -webkit-transition: background-color 100ms ease-in;
@@ -318,6 +352,21 @@ body{
   transition: background-color 100ms ease-in;
 }
 
+.mask{
+  position:absolute;
+  inset:0;
+  width: 100%;
+  height:100%;
+
+  background-color: var(--white-mask-color);
+}
+
+
+/* input presets*/
+
+
+
+/* classes to define animations*/
 .ripple {
   position: fixed; /* The absolute position we mentioned earlier */
   border-radius: 50%;
@@ -327,7 +376,9 @@ body{
   z-index:300;
 }
 
-
+.fadding-out{
+  animation: fadding-out 1600ms ease-out;
+}
 
 
 

@@ -2,12 +2,11 @@ import './month-selector.css';
 import SelectionWheel from './SelectionWheel';
 
 import { fillWithZero } from '../../../../elements/parser/dateParser';
-import { useRef, useState } from 'react';
 
 export default function MonthSelector(props){
-    var currentMonth = props?.currentMonth;
-    var currentYear = props?.currentYear;
-    const [initialYear,setInitialYear] = useState(currentYear);
+    const currentMonth = props?.currentFocusedDay.getMonth() + 1;
+    const currentYear = props?.currentFocusedDay.getFullYear();
+    const initialYear = new Date().getFullYear();
     const setSelection = props?.setSelection;
 
 
@@ -32,10 +31,9 @@ export default function MonthSelector(props){
 
 
     function adjustMonth(date){
-        console.log(date)
         const month = fillWithZero((date['month']+1 || currentMonth).toString());
         const year = (date['year'] || currentYear).toString();
-        const newSelection = new Date(`${year}-${month}-01`);
+        const newSelection = new Date(`${month}-01-${year}`);
         console.log(newSelection);
         setSelection(newSelection);
     }
@@ -43,7 +41,7 @@ export default function MonthSelector(props){
     return (
         <div className="month-selector-container">
             <div className="month-selector">
-                <div className="date-text"
+                <div className="date-text button"
                 onClick={()=>{props.onClick()}}>
                     {`${monthsDict[currentMonth]}, ${currentYear}`}
                 </div>
@@ -53,14 +51,14 @@ export default function MonthSelector(props){
                             className="date-selector-box"
                             elementsArray={[initialYear,initialYear+1]}
                             width={25}
-                            initialPos={0}
+                            initialPos={currentYear}
                             callback={(year)=>{adjustMonth({'year':[initialYear,initialYear+1][year]})}}
                             >
                         </SelectionWheel>
                         <SelectionWheel 
                             className="date-selector-box"
                             elementsArray={monthList}
-                            initialPos={props.currentMonth-1}
+                            initialPos={currentMonth-1}
                             callback={(month)=>{adjustMonth({'month':month})}}
                             clickCallback={()=>{props.onClick()}}
                             >

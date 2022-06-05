@@ -1,0 +1,74 @@
+.input-container{
+    position:relative;
+    height: min-content;
+    margin:3%;
+}
+.input-element{
+    position:relative;
+    margin:auto 1vh;
+
+    min-width: fit-content;
+    width:50%;
+    max-width: 84%;
+    padding:0.5rem 2rem 0.7rem 1rem;
+    box-sizing: border-box;
+
+    border:0.5px solid var(--google-lightgrey-color);
+    border-radius: 0.25rem;
+    background-color: #ffffff00;
+    outline: none;
+
+    font-size:11pt;
+    font-family: zen-bold, sans-serif;
+    color:var(--greytotext-color);
+
+    z-index: 10;
+}
+
+.input-element:focus{
+    border:2px solid var(--google-blue-color);
+    padding:0.5rem 2rem 0.7rem 1rem;
+}
+
+.input-element:focus + .input-label, .input-element + .filled{
+    position:absolute;
+    margin-top: -6pt;
+    padding:0 0.4rem;
+    
+    background-color: #fff;
+
+    color:var(--google-blue-color);
+    font-size:7pt;
+
+    z-index:20;
+}
+
+.input-label{
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto auto 0.8rem;
+    height:min-content;
+    width:fit-content;
+
+    font-family:zen-bold;
+    font-size:11pt;
+    color:var(--google-lightgrey-color);
+
+    transition:0.1s ease;
+    
+    z-index:1;
+}
+
+.input-container .long-text{
+    min-height: 12vh;
+}
+
+.input-container .long-text + .input-label{
+    margin:0.8rem auto auto;
+}
+.input-container .long-text:focus + .input-label{
+    margin:-5pt auto auto;
+}

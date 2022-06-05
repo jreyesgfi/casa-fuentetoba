@@ -1,0 +1,77 @@
+/*fonts used*/
+@font-face { font-family: zen-light; src: url('../../../fonts/ZenKaku/ZenKakuGothicAntique-Light.ttf') }
+@font-face { font-family: zen-normal; src: url('../../../fonts/ZenKaku/ZenKakuGothicAntique-Medium.ttf') }
+@font-face { font-family: zen-bold; src: url('../../../fonts/ZenKaku/ZenKakuGothicAntique-Bold.ttf') }
+
+
+.send-email-panel{
+
+    position:absolute;
+    bottom:5vh;
+    left:0;
+    right:0;
+    margin:auto;  
+  
+    z-index:100;
+    animation:append-animate 0.3s ease-in;
+
+    width:80%;
+    height: 85%;
+    background-color: #fff;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.3);
+
+    font-family:zen-bold, sans-serif;
+
+    z-index:200;
+}
+
+.send-email-panel h3{
+    margin:2% auto 6%;
+
+    font-size:18pt;
+}
+
+.booking-info{
+    margin-bottom:3%;
+    justify-content: space-evenly;
+}
+
+.send-email-panel .info-container{
+    margin-bottom:2%;
+    flex: 1 1 40%;
+    max-width:fit-content;
+}
+
+.info-container p,.info-container h4{
+    margin:0;
+    
+    width:fit-content;
+
+    color:var(--google-darkblue-color);
+}
+
+.info-container p{
+    color: var(--google-grey-color);
+}
+.body form{
+    position:relative;
+    height: fit-content;
+    width:fit-content;
+}
+.send-email-panel .buttons-container{
+    position:absolute;
+    inset:auto 0 3vh 0;
+    margin:auto;
+    width:92%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.send-email-panel .buttons-container div{
+    min-width: 30%;
+}
+
+
+
+.comments-and-send-container .email-info{
+    margin:0 auto 4vh auto;
+}

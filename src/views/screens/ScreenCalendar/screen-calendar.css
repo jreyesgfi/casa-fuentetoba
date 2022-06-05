@@ -1,124 +1,69 @@
 .calendar-header{
-    height:10vh;
+    height:10%;
 
-    margin-bottom:4vh;
+    margin-bottom:2.5vh;
 }
-.week-day-header{
+.calendar-body-container{
+    height:88%;
+    width:fit-content;
+}
+.first-section-container{
+    width:100%;
+    height: 100%;
+}
+.second-section-container{
+    position:absolute;
+    bottom:0;
+    margin:auto;
+    width:100%;
+}
+.month-selector-container{
     position:relative;
 
-    top: 8vh;
-    left:0;
-
-    margin:5vw;
-    margin-top:2vh;
-    margin-bottom:0vh;
-    
-    width:92vw;
-    height:5vh;
-    padding:2vh 1vw 2vh 0;
-    box-sizing: border-box;
-
-    display:flex;
-    flex-wrap: wrap;
-
-    justify-content:first baseline;
-}
-.week-day-cell{
-    position:relative;
-
-    box-sizing: border-box;
-
-    height: auto;
-    flex: 1 0 13%;
-
-    color:var(--primary-dark-color);
-
-    border:2px solid var(--primary-dark-color);
-}
-
-.calendar-container{
-    position:relative;
-
-    top: 8vh;
-    left:0;
-
-    margin:2vh auto 0 auto;
-    
-    width:92vw;
-    height:fit-content;
-    box-sizing: border-box;
-
-    border:2px solid var(--primary-dark-color);
-    border-top-left-radius: 5%;
-    border-bottom-right-radius: 5%;
-    background-color: var(--primary-dark-color);
-
-    display:flex;
-    flex-wrap: wrap;
-
-    justify-content:first baseline;
-}
-
-.day-container{
-    position:relative;
-
-    box-sizing: border-box;
-
-    height: 7vh;
-    flex: 1 0 13%;
-
-    color:var(--primary-dark-color);
-
-    border:2px solid var(--primary-dark-color);
-    background-color: var(--primary-light-color);
-}
-
-.day-header{
-    height: 50%;
-}
-
-.day-body{
-    height: 50%;
-
-    font-family: MPLUS1SemiBold;
-    font-size:small;
+    height: 8%;
 }
 
 
 
-.calendar-container .ocupado{
+
+/* .calendar-container .ocupado{
     border:2px solid var(--primary-light-color);
     background-color: var(--primary-dark-color);
 }
+.calendar-container .ocupado .day-body{
+    display:none;
+} */
 
-.señalado{
+/* .señalado{
     background-color: var(--primary-colorful-color);
     
-}
-
-.calendar-container .ocupado .day-header{
-    color:var(--primary-light-color);
-}
+} */
 
 
-.calendar-container .incoming{
+/* .calendar-container .incoming{
     visibility: hidden;
-}
+} */
 
-.calendar-container .not-visible{
+/* .calendar-container .not-visible{
     visibility: hidden;
-}
+} */
 
-/* Change the color of the cell depending on the day*/
+/* Change the color of the cell depending on the day
 .calendar-container .today{
-    border-radius: 20%;
     border:2pt solid var(--primary-colorful-color);
+} */
+
+
+/* info of the boocking conditions */
+.boocking-condition-container p{
+    font-size: small;
+    margin:1vh auto;
 }
 
 /* price box*/
 .total-price-container{
-    position:absolute;
-    bottom:5vh;
+    position:relative;
+    margin: 3vh auto;
 
     width:100%;
     
@@ -126,30 +71,33 @@
     justify-content: center;
     align-items: center;
 
-    font-family: MPLUS1SemiBold;
-    font-size: large;
+    font-family: MPLUS1Normal;
+    font-size: min(6vw, 3vh);
     color:var(--primary-dark-color);
 }
 .total-price{
 
-    max-width: 35%;
+    max-width: 42%;
     height: fit-content;
 
     padding-bottom: 0.5vh;
-    border:1pt solid #00000000;
+    border:1px solid #00000000;
     border-bottom-color:var(--primary-dark-color);
-    transition: 3s;
+    transition: 1s;
 }
 
 .next-step-buttom{
     margin-left:5vw;
-    max-width: 20%;
+    max-width: 30%;
+
     padding: 1vh 2vh;
 
-    font-family: MPLUS1Bold;
-    font-size: small;
+    font-family: primary-normal;
+    font-size: min(4vw, 3vh);
+    /* color:var(--primary-light-color); */
 
-    border:1pt solid var(--primary-dark-color);
+    border:0.5pt solid var(--primary-dark-color);
+    background-color: var(--primary-colorful-color-transparent);
 
     animation:append-from-left 0.6s ease-out;
     
@@ -159,9 +107,39 @@
 .range-completed{
     animation:add-right-element 0.6s ease-out;
 }
+.alert{
+    bottom:40%;
+}
 
-.range-not-completed{
-    
+
+
+@media only screen and (min-width: 700px){
+    .calendar-body-container{
+        margin-left :1%;
+        width:65%;
+    }
+    .alert{
+        top:10%;
+        right:0;
+        left:65%;
+        margin:10vh auto auto auto;
+        
+        width:24vw;
+        height:fit-content;
+      
+        animation:append-animate 0.3s ease-in;
+    }
+
+    /* price box*/
+    .second-section-container{
+        position:absolute;
+        top:40%;
+        right:0;
+        left:65%;
+        margin:10vh auto auto auto;
+
+        width:35%;
+    }
 }
 
 

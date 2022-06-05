@@ -18,6 +18,8 @@ export default function ScreenController (props) {
     // define the screen properties as states
     const [offset,setOffset] = useState(0);
 
+    
+
     const screenUpToDevice = () => {
         const ratio = window.devicePixelRatio || 1;
         const device = deviceUsed();
@@ -41,7 +43,6 @@ export default function ScreenController (props) {
     
     useEffect(
         ()=>{
-            console.log('size', screenUpToDevice())
             setScreenSize(screenUpToDevice())},
         [window.innerHeight]
     )
@@ -52,11 +53,6 @@ export default function ScreenController (props) {
     // Global values for the screen
     const screenHeightFactor = 1;
     const topNavHeight =0.1*screenSize;
-
-    // update the offset
-    useEffect( ()=> {
-        setOffset(window.scrollY)
-    },[window.scrollY]);
 
     // change the window offset to move into a certain screen
     const moveToScreen = function(numScreen){
@@ -69,7 +65,16 @@ export default function ScreenController (props) {
     let utilScreenSize = screenPercentage * screenSize;
 
     // app Screen Number
-    let appScreenNumber = parseInt((offset+utilScreenSize/2) / utilScreenSize);
+    const [appScreenNumber, setAppScreenNumber] = useState(parseInt((offset+200)/screenSize));
+
+    // update the offset
+    useEffect( ()=> {
+        offsetEventListener( ()=>{
+            setOffset(window.scrollY);
+            setAppScreenNumber(parseInt((window.scrollY+200)/screenSize));
+        });
+    },[]);
+
 
     
 
@@ -115,7 +120,7 @@ export default function ScreenController (props) {
                 <ScreenCharacteristics 
                     screenStyle= {screenStyle}
                     focus= {2==appScreenNumber}
-                    moveToScreen= {()=>{moveToScreen(3)}}>
+                    moveToScreen= {()=>{moveToScreen(4)}}>
                 </ScreenCharacteristics> 
                 <ScreenLocation
                     screenStyle= {screenStyle}

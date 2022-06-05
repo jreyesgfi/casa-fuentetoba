@@ -47,19 +47,6 @@
     text-align: left;
 }
 
-.location-screen .process-buttons-container{
-    position:absolute;
-    inset:auto min(3vw,3vh) min(3vw,3vh) auto;
-    margin:auto;
-    
-    width:fit-content;
-}
 
 @media only screen and (min-width: 700px){
-    .map-responsive{
-        margin:auto;
-    
-        height:60%;
-        width:100vw;
-    }
 }

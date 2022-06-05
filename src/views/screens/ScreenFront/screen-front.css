@@ -162,7 +162,7 @@ h1{
 .buttons-container{
     position:absolute;
     inset:auto 0 0 auto;
-    margin:auto 10% 3%;
+    margin:auto auto 3%;
     display:grid;
     grid-template-columns: 
         2vw [start-first-button] 45vw [end-first-button] 2vw

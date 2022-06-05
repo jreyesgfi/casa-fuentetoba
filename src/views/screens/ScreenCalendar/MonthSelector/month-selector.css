@@ -2,7 +2,7 @@
     position:relative;
     margin:auto;
 
-    width:95vw;
+    width:80%;
 
     z-index:100;
 }
@@ -13,6 +13,7 @@
     top:0;
 
     width:100%;
+    height:100%;
 }
 
 
@@ -23,12 +24,11 @@
 .date-text{
     position:relative;
     left:0;
-    height:0;
     margin:auto;
 
-    width: 50vw;
-    height: fit-content;
-    padding:1vh;
+    width: fit-content;
+    max-height: 100%;
+    padding:0.5vh 5vw;
 
     font-family: MPLUS1SemiBold;
     font-size: large;

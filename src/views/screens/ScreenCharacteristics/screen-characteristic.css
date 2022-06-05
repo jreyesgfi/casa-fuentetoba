@@ -21,9 +21,9 @@
     overflow: hidden;
 }
 .category-container h3{
-    margin:0.5vh auto;
+    margin:3vw auto 2.5vw;
     font-family: primary-light;
-    font-size:min(2.5vh,2.5vw)
+    font-size:min(2.5vh,2.8vw)
 }
 
 
@@ -55,7 +55,8 @@ overflow-y: hidden;
 overflow-x:hidden;
 
 border-radius: 10px;
-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+border:1px solid var(--primary-grey-color);
+box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
 }
 
 .characteristics-elements .ENTORNO .characteristic-container{
@@ -81,7 +82,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     margin:-0.5vh 0 0;
 
     font-family: MPLUS1Normal, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: min(2.5vw, 2.5vh);
+    font-size: min(2vw, 2.5vh);
 }
 .characteristic-container p{
     position:relative;
@@ -116,7 +117,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     margin:1vh min(6vw,6vh);
 }
 .characteristics-description h3{
-    margin:1vh auto;
+    margin:0.5vh auto;
 }
 .characteristics-description p{
     font-size: 2vh;
@@ -151,22 +152,12 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     position:absolute;
     inset: auto 0 1.2vh;
     margin:0 auto;
-    font-family:Main-Bold;
+    font-family:Primary-Bold;
     font-size:2.2vh;
     letter-spacing: min(1vh, 1vw);
     text-align: center;
 }
 
-
-
-
-.characteristics-screen .process-buttons-container{
-    position:absolute;
-    inset:auto min(3vw,3vh) min(3vw,3vh) auto;
-    margin:auto;
-    
-    width:fit-content;
-}
 
 
 @media only screen and (min-width: 700px){
@@ -177,7 +168,7 @@ box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
         grid-template-columns: [start-first-column] 46% [end-first-column] 3% [start-second-column] 46% [end-second-column];
         grid-template-rows: 4%[start-first-block] 35% [end-first-block] 1% [start-second-block] 40% [end-second-block] 2% [start-third-block] 15% [end-third-block]1%;
     }
-    .characteristics-body h3{
+    .characteristics-container h3{
         margin-top: 0;
         margin-bottom: 0vh;
         max-height: 100%;

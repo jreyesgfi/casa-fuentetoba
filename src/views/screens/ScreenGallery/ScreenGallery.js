@@ -7,6 +7,7 @@ import undoIcon from "./../../../icons/undo-arrow.png"
 import { globalFolder } from '../../../operators/photoImporter/GalleryPhotoImporter';
 import { setOffset } from '../../../operators/OffsetController';
 import NextButton from '../../buttons/Next-Button';
+import ImageCarousel from '../../panels/imageCarousel/ImageCarousel';
 
 
 export default function ScreenGallery(props) {
@@ -112,30 +113,35 @@ export default function ScreenGallery(props) {
                 <div className="header-division-line"></div>
                 
             </div>
-            {!photoFullScreen &&
+           {!photoFullScreen &&
             <div className= "photos-container">
                 <div className="room-buttons-container flex-box">
                     {['JARDÍN', 'SALÓN', 'BAÑOS', 'HABITACIONES', 'COCINA'].map(
                         (room)=>selectButtonGenerator(room)
                     )}
                 </div>
-                {mainPhotoGenerator()}
+                <ImageCarousel images={globalFolder[selectedRoom]}>
+                </ImageCarousel>
             </div>
             }
             {photoFullScreen &&
                 <div className= "full-screen-photo-container">
                     <h2>{selectedRoom}</h2>
-                    {mainPhotoGenerator()}
+                    <ImageCarousel images={globalFolder[selectedRoom]}>
+                    </ImageCarousel>
                     <div className="undo-buttom-container"
                         onClick={()=>{setPhotoFullScreen(false)}}>
                         <img src={undoIcon} className='undo-icon'></img>
                     </div>
                     
                 </div>
-            }
-            <NextButton nextScreen={()=>props?.moveToScreen()}>
-            </NextButton>
+            } 
             
+            
+            <div className='process-buttons-container'>
+                <NextButton nextScreen={()=>props?.moveToScreen()}>
+                </NextButton>
+            </div>
 
         </div>
     )
