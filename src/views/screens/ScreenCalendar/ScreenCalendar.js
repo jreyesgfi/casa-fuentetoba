@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { createRef, useEffect, useRef, useState } from "react";
 import "./screen-calendar.css";
 import Papa from "papaparse";
 import daysCalendar from "../../../elements/daysExample/ejemploDays.csv";
@@ -9,64 +9,14 @@ import IDGenerator from "../../../operators/IdGenerator";
 import NextButton from "../../buttons/Next-Button";
 import SendEmailPanel from "../../panels/emailPanel/SendEmailPanel";
 import CalendarWidget from "../../panels/calendarWidget/CalendarWidget";
+import CustomAlert from "../../alerts/CustomAlert";
 
 // for read csv npm install xlsx
 
 export default function ScreenCalendar(props) {
 
 
-    /**
-     * Alert config
-     */
-    const [alert, setAlert] = useState({
-        'display': false,
-        'severity': 'info',//'success, info, warning or error',
-        'message': 'Seleccione una fecha de llegada.',
-    });
 
-
-    /**
-     * alert
-     */
-    const alertRef = useRef(0);
-
-
-    async function setAlertWithTimer(value,time=5000){
-        // save a copy
-        const alertLocal = {...value};
-
-        // track this alert
-        const id = IDGenerator();
-        alertRef.current = id;
-
-        // set the alert
-        setAlert(value);
-
-        //define a function to wait 
-        await new Promise(() => {
-            setTimeout(() => {
-                console.log(alertRef.current, id)
-                // check if the current alert is the one seted
-                if (alertRef.current===id){
-                    
-                    // start the fadding out
-                    alertLocal['className']= 'fadding-out';
-                    setAlert(alertLocal);
-                }
-            }, time);
-
-            setTimeout(() => {
-                // check if the current alert is the one seted
-                if (alertRef.current===id){
-                    // make it dessapear
-                    setAlert({});
-                    alertRef.current = 0;
-                }
-            }, 1500+time);
-        });
-        return
-
-    }
 
     /**
      *  Email panel
@@ -79,6 +29,19 @@ export default function ScreenCalendar(props) {
     const [dayToFocus, setDayToFocus] = useState(new Date());
 
     const [selectingDay, setSelectingDay] = useState(false);
+
+    const [totalPrice, setTotalPrice] = useState(null);
+
+    const [alertRefState, setAlertRefState] = useState();
+    const alertObjRef = useRef();
+        // 'display': true, false,
+        // 'severity': 'info',//success, info, warning or error',
+        // 'message': 'Seleccione una fecha de llegada.',
+
+    function sendAlert(alertObj){
+        alertObjRef.current = alertObj;
+        setAlertRefState(IDGenerator());
+    }
 
 
     return (
@@ -112,7 +75,10 @@ export default function ScreenCalendar(props) {
                         
                         className={"month-selector-container"}>
                     </MonthSelector>
-                    <CalendarWidget dayToFocus={dayToFocus}>
+                    <CalendarWidget 
+                        dayToFocus={dayToFocus}
+                        sendAlert={(alertObject)=>{sendAlert(alertObject)}}
+                        sendTotalPrice={(price)=>{setTotalPrice(price)}}>
                     </CalendarWidget>
                     <div className="boocking-condition-container">
                         <p>*La reserva mínima es de 600€.</p>
@@ -122,7 +88,7 @@ export default function ScreenCalendar(props) {
                     <div className="total-price-container">
                         <div className={`total-price ${true != false ? 'range-completed' : 'range-not-completed'}`}>
                             Total:
-                            {100 | 0} €
+                            {totalPrice | ''} €
                         </div>
                         {/* {rangeSelected['rangeCompleted'] === true &&
                             <div className={`next-step-buttom button`}
@@ -133,14 +99,21 @@ export default function ScreenCalendar(props) {
                     </div>
                 </div>
             </div>
-            {alert['display'] == true &&
+            {/* {alert['display'] == true &&
                     <Alert
                         className={`alert ${alert?.['className']}`}
                         severity={`${alert['severity']}`}
                         onClose={() => { setAlert({}); alertRef.current = 0;}}>
                         {alert['message']}
                     </Alert>
-            }
+            } */}
+            <CustomAlert 
+                display={alertObjRef?.current?.['display']}
+                message={alertObjRef?.current?.['message']}
+                severity={alertObjRef?.current?.['severity']}
+                reference={alertRefState||null}
+            >
+            </CustomAlert>
             {emailPanel === true &&
                 <div></div>
                 // <SendEmailPanel rangeSelected={rangeSelected?.['days']} closePanel={()=>{setEmailPanel(false);}}>

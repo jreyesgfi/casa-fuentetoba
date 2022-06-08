@@ -26,34 +26,6 @@
 
 
 
-/* .calendar-container .ocupado{
-    border:2px solid var(--primary-light-color);
-    background-color: var(--primary-dark-color);
-}
-.calendar-container .ocupado .day-body{
-    display:none;
-} */
-
-/* .señalado{
-    background-color: var(--primary-colorful-color);
-    
-} */
-
-
-/* .calendar-container .incoming{
-    visibility: hidden;
-} */
-
-/* .calendar-container .not-visible{
-    visibility: hidden;
-} */
-
-/* Change the color of the cell depending on the day
-.calendar-container .today{
-    border:2pt solid var(--primary-colorful-color);
-} */
-
-
 /* info of the boocking conditions */
 .boocking-condition-container p{
     font-size: small;
@@ -107,9 +79,7 @@
 .range-completed{
     animation:add-right-element 0.6s ease-out;
 }
-.alert{
-    bottom:40%;
-}
+
 
 
 

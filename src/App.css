@@ -142,23 +142,6 @@ html, body, .app {
 }
 
 
-/*alerts*/
-
-.alert{
-  position:absolute;
-  bottom:0vh;
-  left:0;
-  right:0;
-  margin:auto;
-  
-  width:92vw;
-  height:min-content;
-
-
-  z-index:100;
-  animation:append-animate 0.3s ease-in;
-}
-
 /* general */
 body{
   font-family: MPLUS1Normal;
@@ -308,7 +291,7 @@ body{
   }
 }
 
-@keyframes fadding-out{
+@keyframes fading-out{
   from{
     opacity: 1;
   }

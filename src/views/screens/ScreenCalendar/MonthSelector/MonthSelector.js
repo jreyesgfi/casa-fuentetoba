@@ -45,12 +45,13 @@ export default function MonthSelector(props){
                 onClick={()=>{props.onClick()}}>
                     {`${monthsDict[currentMonth]}, ${currentYear}`}
                 </div>
-                {props?.selectingDay == true &&
-                    <div className='selection-panel'>
+            </div>
+            {props?.selectingDay == true &&
+                    <div className='selection-panel flex-box'>
                         <SelectionWheel 
                             className="date-selector-box"
                             elementsArray={[initialYear,initialYear+1]}
-                            width={25}
+                            width={35}
                             initialPos={currentYear}
                             callback={(year)=>{adjustMonth({'year':[initialYear,initialYear+1][year]})}}
                             >
@@ -58,15 +59,14 @@ export default function MonthSelector(props){
                         <SelectionWheel 
                             className="date-selector-box"
                             elementsArray={monthList}
+                            width={55}
                             initialPos={currentMonth-1}
                             callback={(month)=>{adjustMonth({'month':month})}}
                             clickCallback={()=>{props.onClick()}}
                             >
                         </SelectionWheel>
                     </div>
-                }
-            
-            </div>
+            }
         </div>
     );
 

@@ -30,7 +30,7 @@ export default function SelectionWheel(props){
 
     return(
         <div className='selection-wheel'
-            style={{width:`${props.width}vw`}}
+            style={{width:`${props.width}%`}}
         >
             <div className={`${
                    nextEntryHidden() ? 'hidden':''

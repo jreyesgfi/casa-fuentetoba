@@ -1,0 +1,43 @@
+/*alerts*/
+.alert{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  margin:auto;
+  
+  width:90vw;
+  height:min-content;
+
+
+  z-index:100;
+  animation:append-animate 0.3s ease-in;
+}
+
+.fading-out{
+    animation:fading-out 1.5s ease-out;
+}
+
+@keyframes fading-out{
+    from{
+      opacity: 1;
+    }
+    to{
+      opacity: 0;
+    }
+  }
+
+
+  @media only screen and (min-width: 700px){
+    .alert{
+        top:10%;
+        right:0;
+        left:65%;
+        margin:10vh auto auto auto;
+        
+        width:24vw;
+        height:fit-content;
+      
+        animation:append-animate 0.3s ease-in;
+    }
+}

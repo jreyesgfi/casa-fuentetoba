@@ -27,21 +27,21 @@ export default function ScreenCharacteristics(props) {
 
 
     // track if an element is clicked
-    const [taleKey, setTaleKey] = useState({});
-    const [taleClicked, setTaleClicked] = useState();
+    const [tileKey, setTileKey] = useState({});
+    const [tileClicked, setTileClicked] = useState();
     
 
-    // create tales just once
+    // create tiles just once
     useEffect(
         ()=>{
-            var taleKeyLocal = {};
+            var tileKeyLocal = {};
             Object.keys(characteristicJSON).map((key,index)=>{
-                taleKeyLocal[key]= IDGenerator();
+                tileKeyLocal[key]= IDGenerator();
             })
             //add a state for description
-            taleKeyLocal['appDescription']=IDGenerator();
+            tileKeyLocal['appDescription']=IDGenerator();
 
-            setTaleKey(taleKeyLocal);
+            setTileKey(tileKeyLocal);
         }
      ,[])
 
@@ -59,34 +59,35 @@ export default function ScreenCharacteristics(props) {
      // click on Characterisctic
 
     function sendCharacteristicClicked(key){
-         sendElementClicked(taleKey,key,taleClicked,setTaleClicked);
+         sendElementClicked(tileKey,key,tileClicked,setTileClicked);
     }
 
 
     const characteristicsGenerator = function (category) {
         const categorySelected = categories[category]
         return (
-            <div className={`category-container ${categorySelected['title']} `}>
+            <div className={`category-container ${categorySelected['title']} `}
+                key={IDGenerator()}>
                 <h3> {categorySelected['title']}</h3>
                 <div className={`characteristics-container`}>
                     {categorySelected['elements'].map((element) => {
-                        const id = taleKey[element]
+                        const id = tileKey[element]
                         return (
                             <div className="characteristic-container button"
-                                key={id}
+                                key={IDGenerator()}
                                 onClick={() => {
                                     sendCharacteristicClicked(element);
                                 }}>
-                                {taleClicked !== id &&
-                                <div className='tale-not-clicked'>
+                                {tileClicked !== id &&
+                                <div className='tile-not-clicked'>
                                     <img
                                         src={characteristicJSON[element]['url']}
                                     ></img>
                                     <h3> {LimitText(characteristicJSON[element]['title'])}</h3>
                                 </div>
                                 }
-                                {taleClicked === id &&
-                                    <div className='tale-clicked'>
+                                {tileClicked === id &&
+                                    <div className='tile-clicked'>
                                         <h3> {LimitText(characteristicJSON[element]['title'])}</h3>
                                         <p> {characteristicJSON[element]['text']}</p>
                                     </div>
@@ -119,8 +120,8 @@ export default function ScreenCharacteristics(props) {
                 </div>
                 
                 
-                <div className={`characteristics-description ${taleKey['appDescription']===taleClicked?'opened':'closed'}`}
-                        key={taleKey['appDescription']}
+                <div className={`characteristics-description ${tileKey['appDescription']===tileClicked?'opened':'closed'}`}
+                        key={tileKey['appDescription']}
                         onClick={()=>{sendCharacteristicClicked('appDescription')}}>
                         <h3>Descripción</h3>
                         <p>La Casa de Fuentetoba es un unifamiliar adosado que se encuentra ubicada en el pueblo de Fuentetoba, pedanía de Golmayo. Fue restaurado en el 2022 y renovado su menaje y muebles en esta fecha.</p>
@@ -133,7 +134,7 @@ export default function ScreenCharacteristics(props) {
                         <p>A tan solo 7 km de la casa se encuentra el famoso monte soriano de Valonsadero, a 11 km el campo de golf de Pedrajas, a 25 minutos en coche del precioso pueblo de Vinuesa, en pinares, y el embalse de la cuerda del pozo y a unos 40 minutos en coche, la famosa Laguna Negra y el espectacular Cañón del rio Lobos.</p>
                         <p>¡Tu estancia será inolvidable!</p>
                     <div className="open-description-area">
-                        <p>{`${taleKey['appDescription']===taleClicked?'LEER MENOS':'LEER MÁS'}`}</p>
+                        <p>{`${tileKey['appDescription']===tileClicked?'LEER MENOS':'LEER MÁS'}`}</p>
                     </div>
                 </div>
                 <div className='process-buttons-container'>

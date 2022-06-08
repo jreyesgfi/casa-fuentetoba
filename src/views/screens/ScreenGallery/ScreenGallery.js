@@ -8,6 +8,7 @@ import { globalFolder } from '../../../operators/photoImporter/GalleryPhotoImpor
 import { setOffset } from '../../../operators/OffsetController';
 import NextButton from '../../buttons/Next-Button';
 import ImageCarousel from '../../panels/imageCarousel/ImageCarousel';
+import IDGenerator from '../../../operators/IdGenerator';
 
 
 export default function ScreenGallery(props) {
@@ -46,6 +47,7 @@ export default function ScreenGallery(props) {
                     setSelectedRoom(name);
                     setMainPhotoNum(0);
                 }}
+                key = {IDGenerator()}
             >
               <img className='photo'
                     src={roomDict[name]}
